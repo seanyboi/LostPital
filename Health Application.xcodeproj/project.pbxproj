@@ -17,6 +17,7 @@
 		14555C5B207D0D22005FBAA6 /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5A207D0D22005FBAA6 /* Diagnosis.swift */; };
 		14555C5D207D0D5A005FBAA6 /* MapOfHospitals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */; };
 		14555C5F207D1562005FBAA6 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5E207D1562005FBAA6 /* Border.swift */; };
+		14555C63207D2412005FBAA6 /* SymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C62207D2412005FBAA6 /* SymptomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		14555C5A207D0D22005FBAA6 /* Diagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnosis.swift; sourceTree = "<group>"; };
 		14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOfHospitals.swift; sourceTree = "<group>"; };
 		14555C5E207D1562005FBAA6 /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
+		14555C62207D2412005FBAA6 /* SymptomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				14555C5E207D1562005FBAA6 /* Border.swift */,
+				14555C62207D2412005FBAA6 /* SymptomCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				14555C57207D0C7F005FBAA6 /* SearchingSymptoms.swift in Sources */,
 				14555C5B207D0D22005FBAA6 /* Diagnosis.swift in Sources */,
 				14555C44207D0B35005FBAA6 /* SymptomChecker.swift in Sources */,
+				14555C63207D2412005FBAA6 /* SymptomCell.swift in Sources */,
 				14555C42207D0B34005FBAA6 /* AppDelegate.swift in Sources */,
 				14555C5D207D0D5A005FBAA6 /* MapOfHospitals.swift in Sources */,
 			);

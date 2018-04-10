@@ -68,7 +68,7 @@
                                     </constraint>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymptomName" rowHeight="50" id="Kva-gA-tvz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymptomName" rowHeight="50" id="Kva-gA-tvz" customClass="SymptomCell" customModule="Health_Application" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kva-gA-tvz" id="A4q-gZ-WN8">
@@ -89,6 +89,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="5UZ-Yp-60S" secondAttribute="trailing" constant="10" id="RDs-Ov-552"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="symptomName" destination="5UZ-Yp-60S" id="IWb-Hb-BYw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -179,6 +182,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="symptomCheckerTable" destination="AbK-KK-aPa" id="K8J-Hn-XHu"/>
                         <segue destination="TeK-lF-zEN" kind="showDetail" identifier="1-2" id="e7M-zT-QZi"/>
                         <segue destination="3vM-bS-YND" kind="showDetail" identifier="1-4" id="RI1-oS-rcI"/>
                     </connections>
