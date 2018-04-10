@@ -16,6 +16,12 @@ class SymptomChecker: UIViewController {
     }
 
 
+    @IBAction func searchButton(_ sender: Any) {
+        
+        performSegue(withIdentifier: "1-2", sender: nil)
+        
+    }
+    
 
 }
 

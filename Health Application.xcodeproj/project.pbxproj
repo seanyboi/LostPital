@@ -16,6 +16,7 @@
 		14555C59207D0CF0005FBAA6 /* FurtherQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */; };
 		14555C5B207D0D22005FBAA6 /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5A207D0D22005FBAA6 /* Diagnosis.swift */; };
 		14555C5D207D0D5A005FBAA6 /* MapOfHospitals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */; };
+		14555C5F207D1562005FBAA6 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5E207D1562005FBAA6 /* Border.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurtherQuestions.swift; sourceTree = "<group>"; };
 		14555C5A207D0D22005FBAA6 /* Diagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnosis.swift; sourceTree = "<group>"; };
 		14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOfHospitals.swift; sourceTree = "<group>"; };
+		14555C5E207D1562005FBAA6 /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		14555C54207D0C1D005FBAA6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14555C5E207D1562005FBAA6 /* Border.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14555C59207D0CF0005FBAA6 /* FurtherQuestions.swift in Sources */,
+				14555C5F207D1562005FBAA6 /* Border.swift in Sources */,
 				14555C57207D0C7F005FBAA6 /* SearchingSymptoms.swift in Sources */,
 				14555C5B207D0D22005FBAA6 /* Diagnosis.swift in Sources */,
 				14555C44207D0B35005FBAA6 /* SymptomChecker.swift in Sources */,
