@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		14555C42207D0B34005FBAA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C41207D0B34005FBAA6 /* AppDelegate.swift */; };
-		14555C44207D0B35005FBAA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C43207D0B35005FBAA6 /* ViewController.swift */; };
+		14555C44207D0B35005FBAA6 /* SymptomChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C43207D0B35005FBAA6 /* SymptomChecker.swift */; };
 		14555C47207D0B35005FBAA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14555C45207D0B35005FBAA6 /* Main.storyboard */; };
 		14555C49207D0B35005FBAA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14555C48207D0B35005FBAA6 /* Assets.xcassets */; };
 		14555C4C207D0B35005FBAA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14555C4A207D0B35005FBAA6 /* LaunchScreen.storyboard */; };
+		14555C57207D0C7F005FBAA6 /* SearchingSymptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C56207D0C7F005FBAA6 /* SearchingSymptoms.swift */; };
+		14555C59207D0CF0005FBAA6 /* FurtherQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */; };
+		14555C5B207D0D22005FBAA6 /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5A207D0D22005FBAA6 /* Diagnosis.swift */; };
+		14555C5D207D0D5A005FBAA6 /* MapOfHospitals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		14555C3E207D0B34005FBAA6 /* Health Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Health Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14555C41207D0B34005FBAA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		14555C43207D0B35005FBAA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		14555C43207D0B35005FBAA6 /* SymptomChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomChecker.swift; sourceTree = "<group>"; };
 		14555C46207D0B35005FBAA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14555C48207D0B35005FBAA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14555C4B207D0B35005FBAA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14555C4D207D0B35005FBAA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14555C56207D0C7F005FBAA6 /* SearchingSymptoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingSymptoms.swift; sourceTree = "<group>"; };
+		14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurtherQuestions.swift; sourceTree = "<group>"; };
+		14555C5A207D0D22005FBAA6 /* Diagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnosis.swift; sourceTree = "<group>"; };
+		14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOfHospitals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,42 @@
 		14555C40207D0B34005FBAA6 /* Health Application */ = {
 			isa = PBXGroup;
 			children = (
+				14555C53207D0C15005FBAA6 /* Model */,
+				14555C54207D0C1D005FBAA6 /* View */,
+				14555C55207D0C22005FBAA6 /* Controller */,
 				14555C41207D0B34005FBAA6 /* AppDelegate.swift */,
-				14555C43207D0B35005FBAA6 /* ViewController.swift */,
 				14555C45207D0B35005FBAA6 /* Main.storyboard */,
 				14555C48207D0B35005FBAA6 /* Assets.xcassets */,
 				14555C4A207D0B35005FBAA6 /* LaunchScreen.storyboard */,
 				14555C4D207D0B35005FBAA6 /* Info.plist */,
 			);
 			path = "Health Application";
+			sourceTree = "<group>";
+		};
+		14555C53207D0C15005FBAA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14555C54207D0C1D005FBAA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14555C55207D0C22005FBAA6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				14555C43207D0B35005FBAA6 /* SymptomChecker.swift */,
+				14555C56207D0C7F005FBAA6 /* SearchingSymptoms.swift */,
+				14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */,
+				14555C5A207D0D22005FBAA6 /* Diagnosis.swift */,
+				14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +172,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14555C44207D0B35005FBAA6 /* ViewController.swift in Sources */,
+				14555C59207D0CF0005FBAA6 /* FurtherQuestions.swift in Sources */,
+				14555C57207D0C7F005FBAA6 /* SearchingSymptoms.swift in Sources */,
+				14555C5B207D0D22005FBAA6 /* Diagnosis.swift in Sources */,
+				14555C44207D0B35005FBAA6 /* SymptomChecker.swift in Sources */,
 				14555C42207D0B34005FBAA6 /* AppDelegate.swift in Sources */,
+				14555C5D207D0D5A005FBAA6 /* MapOfHospitals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
