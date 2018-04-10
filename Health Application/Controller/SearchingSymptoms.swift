@@ -8,11 +8,53 @@
 
 import UIKit
 
-class SearchingSymptoms: UIViewController {
+class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewDataSource {
+    
+    
+    @IBOutlet weak var searchingSymptomsTableView: UITableView!
+    
+    var searchingArray = ["X", "Y", "Z", "1", "2", "3"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        searchingSymptomsTableView.delegate = self
+        searchingSymptomsTableView.dataSource = self
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return searchingArray.count
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+        if let cell = searchingSymptomsTableView.dequeueReusableCell(withIdentifier: "ExtraSymptoms", for: indexPath) as? ExtraSymptomCell {
+            
+            let searchingArray = self.searchingArray[indexPath.row]
+            
+            cell.symptomNameLabel.text = searchingArray
+            
+            return cell
+            
+        } else {
+            
+            return UITableViewCell()
+        }
+        
+        
+    }
+    
+    
+    @IBAction func backButton(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+        
+        
     }
     
     

@@ -12,18 +12,23 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var symptomCheckerTable: UITableView!
     
+    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var yearOfBirthTextField: UITextField!
+    
     var symptomName = ["X", "Y", "Z", "1", "2", "3"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Must set delegates.
         symptomCheckerTable.delegate = self
         symptomCheckerTable.dataSource = self
         
-
     }
     
+    //Places array data into tableview.
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -43,6 +48,8 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    //Determines how many rows tableview will have.
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return symptomName.count
@@ -50,6 +57,7 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
+    //Allows navigation to next controller.
 
     @IBAction func searchButton(_ sender: Any) {
         
