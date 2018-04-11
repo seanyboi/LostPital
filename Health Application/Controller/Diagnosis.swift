@@ -16,5 +16,10 @@ class Diagnosis: UIViewController {
     }
     
     
+    @IBAction func forwardTest(_ sender: Any) {
+        
+        performSegue(withIdentifier: "4-5", sender: nil)
+        
+    }
     
 }

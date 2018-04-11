@@ -56,15 +56,22 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
+    
+    
 
     //Allows navigation to next controller.
 
     @IBAction func searchButton(_ sender: Any) {
         
+        performSegue(withIdentifier: "1-4", sender: nil)
+        
+    }
+    
+    @IBAction func addingSymptomButton(_ sender: Any) {
+        
         performSegue(withIdentifier: "1-2", sender: nil)
         
     }
     
-
 }
 

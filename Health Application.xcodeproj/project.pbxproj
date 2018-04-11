@@ -19,6 +19,7 @@
 		14555C5F207D1562005FBAA6 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5E207D1562005FBAA6 /* Border.swift */; };
 		14555C63207D2412005FBAA6 /* SymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C62207D2412005FBAA6 /* SymptomCell.swift */; };
 		14555C65207D2923005FBAA6 /* ExtraSymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C64207D2923005FBAA6 /* ExtraSymptomCell.swift */; };
+		5B1B0ACD3B67262F070F9169 /* Pods_Health_Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBFA8156F8E3402F088CB05 /* Pods_Health_Application.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,9 @@
 		14555C5E207D1562005FBAA6 /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		14555C62207D2412005FBAA6 /* SymptomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomCell.swift; sourceTree = "<group>"; };
 		14555C64207D2923005FBAA6 /* ExtraSymptomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraSymptomCell.swift; sourceTree = "<group>"; };
+		7833E7921E0F4C1E5642B53F /* Pods-Health Application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health Application.release.xcconfig"; path = "Pods/Target Support Files/Pods-Health Application/Pods-Health Application.release.xcconfig"; sourceTree = "<group>"; };
+		7EF1D1F207E5231E3BF5E3AD /* Pods-Health Application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health Application.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Health Application/Pods-Health Application.debug.xcconfig"; sourceTree = "<group>"; };
+		AEBFA8156F8E3402F088CB05 /* Pods_Health_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Health_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B1B0ACD3B67262F070F9169 /* Pods_Health_Application.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +59,8 @@
 			children = (
 				14555C40207D0B34005FBAA6 /* Health Application */,
 				14555C3F207D0B34005FBAA6 /* Products */,
+				E7F848AE5306E224095BFC98 /* Pods */,
+				B0590B60988D906C75864B73 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +116,23 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		B0590B60988D906C75864B73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEBFA8156F8E3402F088CB05 /* Pods_Health_Application.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7F848AE5306E224095BFC98 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7EF1D1F207E5231E3BF5E3AD /* Pods-Health Application.debug.xcconfig */,
+				7833E7921E0F4C1E5642B53F /* Pods-Health Application.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -116,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14555C50207D0B35005FBAA6 /* Build configuration list for PBXNativeTarget "Health Application" */;
 			buildPhases = (
+				2ED8ABE44EF3F8B5590568A5 /* [CP] Check Pods Manifest.lock */,
 				14555C3A207D0B34005FBAA6 /* Sources */,
 				14555C3B207D0B34005FBAA6 /* Frameworks */,
 				14555C3C207D0B34005FBAA6 /* Resources */,
+				6479A73FA5BA7E7781AB2DDA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,6 +201,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2ED8ABE44EF3F8B5590568A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Health Application-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6479A73FA5BA7E7781AB2DDA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Health Application/Pods-Health Application-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Health Application/Pods-Health Application-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14555C3A207D0B34005FBAA6 /* Sources */ = {
@@ -324,6 +391,7 @@
 		};
 		14555C51207D0B35005FBAA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EF1D1F207E5231E3BF5E3AD /* Pods-Health Application.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -339,6 +407,7 @@
 		};
 		14555C52207D0B35005FBAA6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7833E7921E0F4C1E5642B53F /* Pods-Health Application.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
