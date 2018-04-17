@@ -1,27 +1,29 @@
 //
-//  ExtraSymptomCell.swift
+//  SuggestedSymptoms.swift
 //  Health Application
 //
-//  Created by Sean O'Connor on 10/04/2018.
+//  Created by Sean O'Connor on 12/04/2018.
 //  Copyright © 2018 Sean O'Connor. All rights reserved.
 //
 
 import UIKit
 
-class ExtraSymptomCell: UITableViewCell {
+class SuggestedSymptomsCell: UITableViewCell {
 
-    @IBOutlet weak var symptomNameLabel: UILabel!
-    
+    @IBOutlet weak var suggestedSymptomLabel: UILabel!
+        
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
     func updateUI(symptomNames: Symptoms) {
         
-        symptomNameLabel.text = symptomNames.symptomName
+        suggestedSymptomLabel.text = symptomNames.symptomName
         
     }
 
+    
 
 }

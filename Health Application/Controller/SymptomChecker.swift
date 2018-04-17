@@ -16,11 +16,21 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var yearOfBirthTextField: UITextField!
     
-    var symptomName = ["X", "Y", "Z", "1", "2", "3"]
+    @IBOutlet weak var searchSymptomsBtn: UIButton!
     
+    var symptomArray = [Symptoms]()
+    var completedSearch = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if completedSearch == "Completed" {
+            
+            searchSymptomsBtn.isHidden = true
+            
+        } else {
+            return
+        }
 
         //Must set delegates.
         symptomCheckerTable.delegate = self
@@ -34,9 +44,9 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let cell = symptomCheckerTable.dequeueReusableCell(withIdentifier: "SymptomName", for: indexPath) as? SymptomCell{
             
-            let symptomName = self.symptomName[indexPath.row]
+            let symptomName = self.symptomArray[indexPath.row]
             
-            cell.symptomName.text = symptomName
+            cell.updateUI(symptomNames: symptomName)
             
             return cell
             
@@ -52,7 +62,7 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return symptomName.count
+        return symptomArray.count
         
         
     }
@@ -72,6 +82,6 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue(withIdentifier: "1-2", sender: nil)
         
     }
-    
+
 }
 

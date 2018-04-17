@@ -18,11 +18,10 @@ class SymptomCell: UITableViewCell {
     }
 
     
-//    func updateUI(storyName: Stories) {
-//
-//        storyNameLbl.text = storyName.storyName
-//
-//
-//    }
+    func updateUI(symptomNames: Symptoms) {
+
+        symptomName.text = symptomNames.symptomName
+
+    }
 
 }

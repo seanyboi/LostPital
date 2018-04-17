@@ -11,13 +11,17 @@ import GoogleMaps
 
 class MapOfHospitals: UIViewController {
     
+    var potentialProblem = [Diagnosis]()
+    
+    @IBOutlet weak var viewToDisplayMap: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
+        viewToDisplayMap = mapView
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
@@ -28,13 +32,12 @@ class MapOfHospitals: UIViewController {
         
     }
     
-    @IBAction func backButton(_ sender: Any) {
+    @IBAction func backBtn(_ sender: Any) {
         
         dismiss(animated: true, completion: nil)
         
+        
     }
-    
-    
     
     
 }
