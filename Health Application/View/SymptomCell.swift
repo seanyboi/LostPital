@@ -20,7 +20,7 @@ class SymptomCell: UITableViewCell {
     
     func updateUI(symptomNames: Symptoms) {
 
-        symptomName.text = symptomNames.symptomName
+        symptomName.text = symptomNames.name
 
     }
 

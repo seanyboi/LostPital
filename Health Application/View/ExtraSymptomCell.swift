@@ -19,7 +19,7 @@ class ExtraSymptomCell: UITableViewCell {
     
     func updateUI(symptomNames: Symptoms) {
         
-        symptomNameLabel.text = symptomNames.symptomName
+        symptomNameLabel.text = symptomNames.name
         
     }
 

@@ -19,29 +19,66 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     
     var searchingUnderWay = false
     
+    func getSymptomNames (request: URLRequest, completion:@escaping (Data?) -> Void) { //@escaping(([String]) -> Void)) {
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return completion(nil)
+            }
+            return completion(data)
+            }.resume()
+        
+    }
+    
+    func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
+
+        DispatchQueue.main.async {
+            self.searchingSymptomsTableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let url = URL(string: "https://api.infermedica.com/v2/symptoms")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue("f93580b1", forHTTPHeaderField: "App-Id")
+        request.setValue("e2d0f821e118e1bd3fa21290d5bc7e22", forHTTPHeaderField: "App-Key")
+        request.setValue("true", forHTTPHeaderField: "Dev-Mode")
+        
+        getSymptomNames(request: request) { data in
+            do {
+                let responseJSON = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                
+                let symptoms = try JSONDecoder().decode([Symptoms].self, from: data!)
+                for element in symptoms {
+                    self.searchingArray.append(element)
+                }
+                //self.searchingArray = self.symptomName
+                //print(self.searchingArray)
+                self.updateTableViewWithSymptoms(symptoms: self.searchingArray)
+                //print(symptomNames)
+                // completion(symptomNames)
+                //print(symptomNames)
+                // tableView(tableView: symptomCheckerTable, indexPath: "SymptomName")
+                // tableView.reloadData()
+                
+            } catch let error as NSError {
+                //completion(["aa"])
+                print(error)
+            }
+            //self.symptomName = symptomNames
+            //self.
+            //print(symptomName)
+        }
 
         searchingSymptomsTableView.delegate = self
         searchingSymptomsTableView.dataSource = self
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
-        
-        let symptom1 = Symptoms(symptomName: "Headache", id: 1)
-        let symptom2 = Symptoms(symptomName: "Tummy Ache", id: 2)
-        let symptom3 = Symptoms(symptomName: "Vomitting", id: 3)
-        let symptom4 = Symptoms(symptomName: "Aching Eyes", id: 4)
-        let symptom5 = Symptoms(symptomName: "Ear Ache", id: 5)
-        let symptom6 = Symptoms(symptomName: "Internal Bleeding", id: 6)
-        
-        searchingArray.append(symptom1)
-        searchingArray.append(symptom2)
-        searchingArray.append(symptom3)
-        searchingArray.append(symptom4)
-        searchingArray.append(symptom5)
-        searchingArray.append(symptom6)
-        
-        
         
     }
     
@@ -85,7 +122,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
             if let symptoms = sender as? Symptoms {
                 
                 destination.symptoms = symptoms
-                destination.addedSymptom = symptoms.symptomName
+                destination.addedSymptom = symptoms.name
             }
             
         }
@@ -133,7 +170,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
             
             searchingUnderWay = true
             
-            filteredArray = searchingArray.filter({$0.symptomName.contains(searchBar.text!)})
+            filteredArray = searchingArray.filter({$0.name.contains(searchBar.text!)})
             
             searchingSymptomsTableView.reloadData()
             

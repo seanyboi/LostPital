@@ -24,7 +24,6 @@
 		14F26944208637D800BAECBD /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26943208637D800BAECBD /* Diagnosis.swift */; };
 		14F269482086386B00BAECBD /* DiagnosisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F269472086386B00BAECBD /* DiagnosisCell.swift */; };
 		14F2694A2086546700BAECBD /* PotentialDiagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F269492086546700BAECBD /* PotentialDiagnosis.swift */; };
-		5B1B0ACD3B67262F070F9169 /* Pods_Health_Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBFA8156F8E3402F088CB05 /* Pods_Health_Application.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 		14F269492086546700BAECBD /* PotentialDiagnosis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PotentialDiagnosis.swift; sourceTree = "<group>"; };
 		7833E7921E0F4C1E5642B53F /* Pods-Health Application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health Application.release.xcconfig"; path = "Pods/Target Support Files/Pods-Health Application/Pods-Health Application.release.xcconfig"; sourceTree = "<group>"; };
 		7EF1D1F207E5231E3BF5E3AD /* Pods-Health Application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health Application.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Health Application/Pods-Health Application.debug.xcconfig"; sourceTree = "<group>"; };
-		AEBFA8156F8E3402F088CB05 /* Pods_Health_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Health_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B1B0ACD3B67262F070F9169 /* Pods_Health_Application.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +131,6 @@
 		B0590B60988D906C75864B73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AEBFA8156F8E3402F088CB05 /* Pods_Health_Application.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -417,6 +413,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NZUGH23YR3;
 				INFOPLIST_FILE = "Health Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sc14soc.Health-Application";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -433,6 +430,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NZUGH23YR3;
 				INFOPLIST_FILE = "Health Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sc14soc.Health-Application";
 				PRODUCT_NAME = "$(TARGET_NAME)";

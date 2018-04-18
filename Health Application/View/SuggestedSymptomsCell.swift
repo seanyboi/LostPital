@@ -20,7 +20,7 @@ class SuggestedSymptomsCell: UITableViewCell {
 
     func updateUI(symptomNames: Symptoms) {
         
-        suggestedSymptomLabel.text = symptomNames.symptomName
+        suggestedSymptomLabel.text = symptomNames.name
         
     }
 

@@ -10,7 +10,7 @@ import UIKit
 
 class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var symptoms: Symptoms = Symptoms(symptomName: "", id: 0)
+    var symptoms: Symptoms!
     
     @IBOutlet weak var additionalSymptomsTableView: UITableView!
     
@@ -28,12 +28,12 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
         additionalSymptomsTableView.delegate = self
         additionalSymptomsTableView.dataSource = self
         
-        let symptom1 = Symptoms(symptomName: "Headache", id: 1)
-        let symptom2 = Symptoms(symptomName: "Tummy Ache", id: 2)
-        let symptom3 = Symptoms(symptomName: "Vomitting", id: 3)
-        let symptom4 = Symptoms(symptomName: "Aching Eyes", id: 4)
-        let symptom5 = Symptoms(symptomName: "Ear Ache", id: 5)
-        let symptom6 = Symptoms(symptomName: "Internal Bleeding", id: 6)
+/*        let symptom1 = Symptoms(name: "Headache", id: "1")
+        let symptom2 = Symptoms(name: "Tummy Ache", id: "2")
+        let symptom3 = Symptoms(name: "Vomitting", id: "3")
+        let symptom4 = Symptoms(name: "Aching Eyes", id: "4")
+        let symptom5 = Symptoms(name: "Ear Ache", id: "5")
+        let symptom6 = Symptoms(name: "Internal Bleeding", id: "6")
         
         suggestedSymptomsArray.append(symptom1)
         suggestedSymptomsArray.append(symptom2)
@@ -42,7 +42,7 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
         suggestedSymptomsArray.append(symptom5)
         suggestedSymptomsArray.append(symptom6)
         
-        selectedSymptoms.append(symptoms)
+        selectedSymptoms.append(symptoms)*/
         clicked.append(addedSymptom)
         
 
@@ -52,11 +52,11 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let selectedRow = suggestedSymptomsArray[indexPath.row]
         
-        let symptomName = suggestedSymptomsArray[indexPath.row].symptomName
+        let symptomName = suggestedSymptomsArray[indexPath.row].name
     
         if clicked.contains(symptomName) {
             
-            let alreadyAlert = UIAlertController(title: "Symptom Already Added", message: "\(selectedRow.symptomName) Has Already Been Added Before, Please Choose A Different Symptom", preferredStyle: .alert)
+            let alreadyAlert = UIAlertController(title: "Symptom Already Added", message: "\(selectedRow.name) Has Already Been Added Before, Please Choose A Different Symptom", preferredStyle: .alert)
             
             let alreadyAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             
@@ -68,7 +68,7 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             clicked.append(symptomName)
             
-            let addedAlert = UIAlertController(title: "Symptom Added", message: "\(selectedRow.symptomName) Has Been Added", preferredStyle: .alert)
+            let addedAlert = UIAlertController(title: "Symptom Added", message: "\(selectedRow.name) Has Been Added", preferredStyle: .alert)
             
             let addedAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             

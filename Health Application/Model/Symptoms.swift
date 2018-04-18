@@ -8,26 +8,7 @@
 
 import Foundation
 
-class Symptoms {
-    
-    private var _symptomName: String?
-    private var _id: Int?
-
-
-    var symptomName: String {
-        return _symptomName!
-    }
-    
-    var id: Int {
-        return _id!
-    }
-
-    init(symptomName: String?, id: Int?) {
-        
-        _symptomName = symptomName
-        _id = id
- 
-    }
-    
-    
+class Symptoms : Decodable {
+    var name: String
+    var id: String
 }
