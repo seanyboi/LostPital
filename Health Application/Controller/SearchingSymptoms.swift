@@ -31,7 +31,6 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     }
     
     func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
-
         DispatchQueue.main.async {
             self.searchingSymptomsTableView.reloadData()
         }
@@ -56,23 +55,15 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
                 let symptoms = try JSONDecoder().decode([Symptoms].self, from: data!)
                 for element in symptoms {
                     self.searchingArray.append(element)
+                    print("x \(element.id) \(element.name)")
                 }
-                //self.searchingArray = self.symptomName
-                //print(self.searchingArray)
+                
                 self.updateTableViewWithSymptoms(symptoms: self.searchingArray)
-                //print(symptomNames)
-                // completion(symptomNames)
-                //print(symptomNames)
-                // tableView(tableView: symptomCheckerTable, indexPath: "SymptomName")
                 // tableView.reloadData()
                 
             } catch let error as NSError {
-                //completion(["aa"])
                 print(error)
             }
-            //self.symptomName = symptomNames
-            //self.
-            //print(symptomName)
         }
 
         searchingSymptomsTableView.delegate = self

@@ -18,9 +18,9 @@ class PotentialDiagnosis: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let diagnosis1 = Diagnosis(diagnosisName: "Hepititis")
-        let diagnosis2 = Diagnosis(diagnosisName: "Gum Disease")
-        let diagnosis3 = Diagnosis(diagnosisName: "Strained Back")
+        let diagnosis1 = Diagnosis()
+        let diagnosis2 = Diagnosis()
+        let diagnosis3 = Diagnosis()
         suggestedDiagnosisArray.append(diagnosis1)
         suggestedDiagnosisArray.append(diagnosis2)
         suggestedDiagnosisArray.append(diagnosis3)

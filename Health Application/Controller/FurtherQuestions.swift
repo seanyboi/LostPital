@@ -22,8 +22,88 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var addedSymptom = ""
     
+    var sex = "male"
+    var age = 25
+    var evidence = [[String:Any]]()
+    var evidenceIDs = [String]()        // TODO pass this through later (should be added to on previous view, e.g. abdominal pane id)
+    var extras: [String:Any] = ["disable_groups": true]
+    
+    //var symptom: Symptoms!
+    
+    
+    func getQuestions (request: URLRequest, completion:@escaping (Data?) -> Void) { //@escaping(([String]) -> Void)) {
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return completion(nil)
+            }
+            return completion(data)
+            }.resume()
+    }
+    
+    func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
+        
+        DispatchQueue.main.async {
+            self.additionalSymptomsTableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //evidenceIDs.append("s_21")
+        evidenceIDs.append("s_247")
+        for evidenceID in evidenceIDs {
+            evidence.append(["id": (evidenceID), "choice_id": "present", "initial": true])
+        }
+        //var evidence = [["id": "s_47", "choice_id": "present", "initial": true]]
+        let json: [String:Any] = ["sex": sex,
+                                  "age": self.age,
+                                  "evidence": self.evidence,
+                                  //"extras": extras
+        ]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+        let url = URL(string: "https://api.infermedica.com/v2/diagnosis")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue("f93580b1", forHTTPHeaderField: "App-Id")
+        request.setValue("e2d0f821e118e1bd3fa21290d5bc7e22", forHTTPHeaderField: "App-Key")
+        //request.setValue("true", forHTTPHeaderField: "Dev-Mode")
+        
+        request.httpBody = jsonData
+        
+        getQuestions(request: request) {data in
+            do {
+                let responseJSON = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                print(responseJSON)
+                
+                //let question = try JSONDecoder().decode(Diagnosis.Question.self, from: data!)
+                let diag = try JSONDecoder().decode(Diagnosis.self, from: data!)
+                //print(ques.question.text)
+                //print(ques.question.items.first!.id)
+                //print(ques.question.items.first!)
+                
+                //var symptom: Symptoms
+                //print(ques.question.items.first!.name)
+                var symptom = Symptoms()
+                symptom.name = diag.question.items.first!.name
+                symptom.id = diag.question.items.first!.id
+                print(symptom.name)
+                print(symptom.id)
+                self.suggestedSymptomsArray.append(symptom)
+                self.updateTableViewWithSymptoms(symptoms: self.suggestedSymptomsArray)
+                //print(ques.question.items.first!.name)
+                //print(ques.question.items.name)
+                
+            } catch let error as NSError {
+                //completion(["aa"])
+                print(error)
+            }
+        }
+        
+        
         
         additionalSymptomsTableView.delegate = self
         additionalSymptomsTableView.dataSource = self
@@ -43,6 +123,10 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
         suggestedSymptomsArray.append(symptom6)
         
         selectedSymptoms.append(symptoms)*/
+        
+        
+        
+        
         clicked.append(addedSymptom)
         
 
@@ -54,9 +138,9 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let symptomName = suggestedSymptomsArray[indexPath.row].name
     
-        if clicked.contains(symptomName) {
+        if clicked.contains(symptomName!) {
             
-            let alreadyAlert = UIAlertController(title: "Symptom Already Added", message: "\(selectedRow.name) Has Already Been Added Before, Please Choose A Different Symptom", preferredStyle: .alert)
+            let alreadyAlert = UIAlertController(title: "Symptom Already Added", message: "\(selectedRow.name!) Has Already Been Added Before, Please Choose A Different Symptom", preferredStyle: .alert)
             
             let alreadyAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             
@@ -66,9 +150,9 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         } else {
             
-            clicked.append(symptomName)
+            clicked.append(symptomName!)
             
-            let addedAlert = UIAlertController(title: "Symptom Added", message: "\(selectedRow.name) Has Been Added", preferredStyle: .alert)
+            let addedAlert = UIAlertController(title: "Symptom Added", message: "\(selectedRow.name!) Has Been Added", preferredStyle: .alert)
             
             let addedAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             

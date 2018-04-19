@@ -8,20 +8,36 @@
 
 import Foundation
 
-class Diagnosis {
+class Diagnosis : Decodable {
     
-    private var _diagnosisName: String?
+    /*init() {
+        //self.question = question
+    }*/
     
-    var diagnosisName: String {
-        return _diagnosisName!
+    var conditions = [Condition]()
+    class Condition : Decodable {
+        var common_name : String!
+        var id : String!
+        var name : String!
+        var probability : Decimal!
     }
-
     
-    init(diagnosisName: String?) {
+    var question: Question!
+    class Question : Decodable {
+        // let type : String
+        var items: [Item]!
+        class Item : Decodable {
+            var choices : [Choice]!
+            var id : String!
+            var name : String!
+            class Choice : Decodable {
+                
+                var id : String!
+                var label : String!
+            }
+        }
         
-        _diagnosisName = diagnosisName
-        
+        var text : String!
     }
-    
-    
+    var should_stop: Int!
 }

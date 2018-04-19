@@ -23,7 +23,7 @@ class DiagnosisCell: UITableViewCell {
     
     func updateUI(diagnosis: Diagnosis) {
         
-        suggestedDiagnosisLabel.text = diagnosis.diagnosisName
+        suggestedDiagnosisLabel.text = diagnosis.question.items.first!.name
         
     }
 
