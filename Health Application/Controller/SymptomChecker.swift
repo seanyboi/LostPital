@@ -9,7 +9,9 @@
 import UIKit
 
 class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    @IBOutlet weak var additionalInfoStack: UIStackView!
+    
     @IBOutlet weak var symptomCheckerTable: UITableView!
     
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
@@ -17,6 +19,8 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var yearOfBirthTextField: UITextField!
     
     @IBOutlet weak var searchSymptomsBtn: UIButton!
+    
+    @IBOutlet weak var searchingSymptoms: UIButton!
     
     var symptomArray = [Symptoms]()
     var completedSearch = ""
@@ -27,9 +31,14 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         if completedSearch == "Completed" {
             
             searchSymptomsBtn.isHidden = true
+            searchingSymptoms.isHidden = false
+            additionalInfoStack.isHidden = false
             
         } else {
-            return
+            
+            searchingSymptoms.isHidden = true
+            additionalInfoStack.isHidden = true
+            
         }
 
         //Must set delegates.

@@ -19,25 +19,29 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     
     var searchingUnderWay = false
     
-    func getSymptomNames (request: URLRequest, completion:@escaping (Data?) -> Void) { //@escaping(([String]) -> Void)) {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return completion(nil)
-            }
-            return completion(data)
-            }.resume()
-        
-    }
-    
-    func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
-        DispatchQueue.main.async {
-            self.searchingSymptomsTableView.reloadData()
-        }
-    }
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        activityIndicator.center = CGPoint(x: searchingSymptomsTableView.bounds.size.width/2, y: searchingSymptomsTableView.bounds.size.height/2)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.red
+        searchingSymptomsTableView.addSubview(activityIndicator)
+        
+        
+        activityIndicator.startAnimating()
+        callingAPI()
+
+        searchingSymptomsTableView.delegate = self
+        searchingSymptomsTableView.dataSource = self
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
+    }
+    
+    func callingAPI() {
         
         let url = URL(string: "https://api.infermedica.com/v2/symptoms")!
         var request = URLRequest(url: url)
@@ -50,28 +54,58 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
         getSymptomNames(request: request) { data in
             do {
-                let responseJSON = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                
+                _ = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                 
                 let symptoms = try JSONDecoder().decode([Symptoms].self, from: data!)
+                
                 for element in symptoms {
+                    
                     self.searchingArray.append(element)
-                    print("x \(element.id) \(element.name)")
+                    
+                    print("\(element.id) - \(element.name)")
+                    
                 }
                 
                 self.updateTableViewWithSymptoms(symptoms: self.searchingArray)
-                // tableView.reloadData()
                 
             } catch let error as NSError {
+                
                 print(error)
+                
             }
         }
-
-        searchingSymptomsTableView.delegate = self
-        searchingSymptomsTableView.dataSource = self
-        searchBar.delegate = self
-        searchBar.returnKeyType = UIReturnKeyType.done
+        
         
     }
+
+    
+    func getSymptomNames (request: URLRequest, completion: @escaping (Data?) -> Void) {
+        
+        _ = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard let data = data, error == nil else {
+                
+                //print(error?.localizedDescription ?? "No data")
+                
+                return completion(nil)
+            }
+            
+            return completion(data)
+            
+            }.resume()
+        
+    }
+    
+    
+    func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
+        DispatchQueue.main.async {
+            self.searchingSymptomsTableView.reloadData()
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -85,6 +119,8 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
         
     }
+    
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -101,7 +137,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         }
         
         performSegue(withIdentifier: "2-3", sender: selectedSymptom)
-        
+        print(selectedSymptom)
         
     }
     
@@ -120,6 +156,8 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
         
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
@@ -149,6 +187,8 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+    
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchBar.text == nil || searchBar.text == "" {
@@ -169,6 +209,8 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
         
     }
+    
+    
     
     
     @IBAction func backButton(_ sender: Any) {

@@ -9,6 +9,7 @@
 import Foundation
 
 class Symptoms : Decodable {
+    
     var id: String!
     var name: String!
 }

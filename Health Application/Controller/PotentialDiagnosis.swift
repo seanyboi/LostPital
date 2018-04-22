@@ -39,14 +39,10 @@ class PotentialDiagnosis: UIViewController, UITableViewDelegate, UITableViewData
             let suggestedDiagnosis = self.suggestedDiagnosisArray[indexPath.row]
             
             cell.updateUI(diagnosis: suggestedDiagnosis)
-            
-            print("COMPLETED HERE")
-            
+                        
             return cell
             
         } else {
-            
-            print("HERE I AM LORD")
             
             return UITableViewCell()
         }

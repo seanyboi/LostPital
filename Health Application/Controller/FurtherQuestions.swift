@@ -20,6 +20,7 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var clicked = [String]()
     
+    //this isnt working now??
     var addedSymptom = ""
     
     var sex = "male"
@@ -28,29 +29,50 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
     var evidenceIDs = [String]()        // TODO pass this through later (should be added to on previous view, e.g. abdominal pane id)
     var extras: [String:Any] = ["disable_groups": true]
     
-    //var symptom: Symptoms!
-    
-    
-    func getQuestions (request: URLRequest, completion:@escaping (Data?) -> Void) { //@escaping(([String]) -> Void)) {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return completion(nil)
-            }
-            return completion(data)
-            }.resume()
-    }
-    
-    func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
-        
-        DispatchQueue.main.async {
-            self.additionalSymptomsTableView.reloadData()
-        }
-    }
-    
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.center = CGPoint(x: additionalSymptomsTableView.bounds.size.width/2, y: additionalSymptomsTableView.bounds.size.height/2)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = UIColor.red
+        additionalSymptomsTableView.addSubview(activityIndicator)
+        
+        
+        activityIndicator.startAnimating()
+        callingApi()
+        
         //evidenceIDs.append("s_21")
+        
+        additionalSymptomsTableView.delegate = self
+        additionalSymptomsTableView.dataSource = self
+        
+//        let symptom1 = Symptoms(name: "Headache", id: "1")
+//        let symptom2 = Symptoms(name: "Tummy Ache", id: "2")
+//        let symptom3 = Symptoms(name: "Vomitting", id: "3")
+//        let symptom4 = Symptoms(name: "Aching Eyes", id: "4")
+//        let symptom5 = Symptoms(name: "Ear Ache", id: "5")
+//        let symptom6 = Symptoms(name: "Internal Bleeding", id: "6")
+//
+//        suggestedSymptomsArray.append(symptom1)
+//        suggestedSymptomsArray.append(symptom2)
+//        suggestedSymptomsArray.append(symptom3)
+//        suggestedSymptomsArray.append(symptom4)
+//        suggestedSymptomsArray.append(symptom5)
+//        suggestedSymptomsArray.append(symptom6)
+//
+//        selectedSymptoms.append(symptoms)
+        
+        selectedSymptoms.append(symptoms)
+        clicked.append(addedSymptom)
+        
+
+    }
+    
+    func callingApi() {
+        
+        
         evidenceIDs.append("s_247")
         for evidenceID in evidenceIDs {
             evidence.append(["id": (evidenceID), "choice_id": "present", "initial": true])
@@ -87,7 +109,7 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 //var symptom: Symptoms
                 //print(ques.question.items.first!.name)
-                var symptom = Symptoms()
+                let symptom = Symptoms()
                 symptom.name = diag.question.items.first!.name
                 symptom.id = diag.question.items.first!.id
                 print(symptom.name)
@@ -98,38 +120,36 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
                 //print(ques.question.items.name)
                 
             } catch let error as NSError {
-                //completion(["aa"])
                 print(error)
             }
         }
         
         
+    }
+    
+    func getQuestions (request: URLRequest, completion:@escaping (Data?) -> Void) {
         
-        additionalSymptomsTableView.delegate = self
-        additionalSymptomsTableView.dataSource = self
+        _ = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                
+                print(error?.localizedDescription ?? "No data")
+                
+                return completion(nil)
+            }
+            
+            return completion(data)
+            
+            }.resume()
+    }
+    
+    func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
         
-/*        let symptom1 = Symptoms(name: "Headache", id: "1")
-        let symptom2 = Symptoms(name: "Tummy Ache", id: "2")
-        let symptom3 = Symptoms(name: "Vomitting", id: "3")
-        let symptom4 = Symptoms(name: "Aching Eyes", id: "4")
-        let symptom5 = Symptoms(name: "Ear Ache", id: "5")
-        let symptom6 = Symptoms(name: "Internal Bleeding", id: "6")
-        
-        suggestedSymptomsArray.append(symptom1)
-        suggestedSymptomsArray.append(symptom2)
-        suggestedSymptomsArray.append(symptom3)
-        suggestedSymptomsArray.append(symptom4)
-        suggestedSymptomsArray.append(symptom5)
-        suggestedSymptomsArray.append(symptom6)
-        
-        selectedSymptoms.append(symptoms)*/
-        
-        
-        
-        
-        clicked.append(addedSymptom)
-        
-
+        DispatchQueue.main.async {
+            
+            self.additionalSymptomsTableView.reloadData()
+            self.activityIndicator.stopAnimating()
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -140,26 +160,38 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
     
         if clicked.contains(symptomName!) {
             
-            let alreadyAlert = UIAlertController(title: "Symptom Already Added", message: "\(selectedRow.name!) Has Already Been Added Before, Please Choose A Different Symptom", preferredStyle: .alert)
+            let cell : UITableViewCell = tableView.cellForRow(at: indexPath)!
             
-            let alreadyAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            cell.accessoryType = .none
             
-            alreadyAlert.addAction(alreadyAction)
+            let indexNumber = clicked.index(of: symptomName!)
+            clicked.remove(at: indexNumber!)
+        
+            if let element = selectedSymptoms.index(where: { $0.name == selectedRow.name }) {
+
+                selectedSymptoms.remove(at: element)
+            }
             
-            self.present(alreadyAlert, animated: true, completion: nil)
+//            let alreadyAlert = UIAlertController(title: "Symptom Already Added", message: "\(selectedRow.name!) Has Already Been Added Before, Please Choose A Different Symptom", preferredStyle: .alert)
+//
+//            let alreadyAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//
+//            alreadyAlert.addAction(alreadyAction)
+//
+//            self.present(alreadyAlert, animated: true, completion: nil)
             
         } else {
             
             clicked.append(symptomName!)
             
-            let addedAlert = UIAlertController(title: "Symptom Added", message: "\(selectedRow.name!) Has Been Added", preferredStyle: .alert)
+            let cell : UITableViewCell = tableView.cellForRow(at: indexPath)!
             
-            let addedAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
             
-            addedAlert.addAction(addedAction)
+            cell.tintColor = .red
             
-            self.present(addedAlert, animated: true, completion: nil)
-            
+            additionalSymptomsTableView.reloadData()
+        
             selectedSymptoms.append(selectedRow)
             
         }
@@ -196,19 +228,27 @@ class FurtherQuestions: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func saveButton(_ sender: Any) {
         
-        if selectedSymptoms.count < 3 {
+        if suggestedSymptomsArray.count < 3 {
             
-            let errorAlert = UIAlertController(title: "Error", message: "You Have Only Selected \(selectedSymptoms.count) Out Of A Minimum Of 2 Further Symptoms", preferredStyle: .alert)
-            
-            let errorAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            
-            errorAlert.addAction(errorAction)
-            
-            self.present(errorAlert, animated: true, completion: nil)
+            performSegue(withIdentifier: "3-1", sender: selectedSymptoms)
             
         } else {
             
-            performSegue(withIdentifier: "3-1", sender: selectedSymptoms)
+            if selectedSymptoms.count < 3 {
+                
+                let errorAlert = UIAlertController(title: "Error", message: "You Have Only Selected \(selectedSymptoms.count) Out Of A Minimum Of 2 Further Symptoms", preferredStyle: .alert)
+                
+                let errorAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                
+                errorAlert.addAction(errorAction)
+                
+                self.present(errorAlert, animated: true, completion: nil)
+                
+            } else {
+                
+                performSegue(withIdentifier: "3-1", sender: selectedSymptoms)
+                
+            }
             
         }
         
