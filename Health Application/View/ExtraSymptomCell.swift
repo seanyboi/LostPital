@@ -17,6 +17,12 @@ class ExtraSymptomCell: UITableViewCell {
         // Initialization code
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        accessoryType = .none
+    }
+    
     func updateUI(symptomNames: Symptoms) {
         
         symptomNameLabel.text = symptomNames.name

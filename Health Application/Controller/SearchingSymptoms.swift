@@ -17,9 +17,15 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     var searchingArray = [Symptoms]()
     var filteredArray = [Symptoms]()
     
+    var selectedSymptoms = [Symptoms]()
+    
+    var clicked = [String]()
+    
     var searchingUnderWay = false
     
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +69,8 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
                     
                     self.searchingArray.append(element)
                     
-                    print("\(element.id) - \(element.name)")
+                    
+                    //print("\(element.id) - \(element.name)")
                     
                 }
                 
@@ -121,62 +128,35 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     }
     
     
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let selectedSymptom: Symptoms!
-        
-        if searchingUnderWay {
-            
-            selectedSymptom = filteredArray[indexPath.row]
-            
-        } else {
-            
-            selectedSymptom = searchingArray[indexPath.row]
-            
-        }
-        
-        performSegue(withIdentifier: "2-3", sender: selectedSymptom)
-        print(selectedSymptom)
-        
-    }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let destination = segue.destination as? FurtherQuestions {
-            
-            if let symptoms = sender as? Symptoms {
-                
-                destination.symptoms = symptoms
-                destination.addedSymptom = symptoms.name
-            }
-            
-        }
-        
-        
-    }
-    
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+        
         if let cell = searchingSymptomsTableView.dequeueReusableCell(withIdentifier: "ExtraSymptoms", for: indexPath) as? ExtraSymptomCell {
             
             let searchingArrays: Symptoms!
             
+            let symptomName: String!
+            
             if searchingUnderWay {
                 
                 searchingArrays = self.filteredArray[indexPath.row]
+                symptomName = filteredArray[indexPath.row].name as String
+            
                 
             } else {
                 
                 searchingArrays = self.searchingArray[indexPath.row]
-                
+                symptomName = searchingArray[indexPath.row].name as String
+                                
+            }
+            
+            if clicked.contains(symptomName)  {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
             
             cell.updateUI(symptomNames: searchingArrays)
-
+            
             return cell
             
         } else {
@@ -187,6 +167,85 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedRow: Symptoms!
+        
+        let symptomName: String!
+        
+        let cell : UITableViewCell = tableView.cellForRow(at: indexPath)!
+        
+        if searchingUnderWay {
+            
+            selectedRow = filteredArray[indexPath.row]
+            symptomName = filteredArray[indexPath.row].name as String
+            
+            if clicked.contains(symptomName) {
+                
+                cell.accessoryType = .none
+
+                let indexNumber = clicked.index(of: symptomName)
+                clicked.remove(at: indexNumber!)
+
+                if let element = selectedSymptoms.index(where: { $0.name == selectedRow.name }) {
+
+                    selectedSymptoms.remove(at: element)
+                }
+
+            } else {
+                
+                clicked.append(symptomName)
+
+                cell.accessoryType = .checkmark
+
+                searchingSymptomsTableView.reloadData()
+
+                selectedSymptoms.append(selectedRow)
+
+            }
+            
+            
+        
+        } else {
+            
+            selectedRow = searchingArray[indexPath.row]
+            symptomName = searchingArray[indexPath.row].name as String
+
+            if clicked.contains(symptomName) {
+                
+                cell.accessoryType = .none
+
+                let indexNumber = clicked.index(of: symptomName)
+                clicked.remove(at: indexNumber!)
+
+                if let element = selectedSymptoms.index(where: { $0.name == selectedRow.name }) {
+
+                    selectedSymptoms.remove(at: element)
+                }
+
+            } else {
+                
+                clicked.append(symptomName)
+                
+                cell.accessoryType = .checkmark
+                
+                searchingSymptomsTableView.reloadData()
+
+                selectedSymptoms.append(selectedRow)
+
+            }
+            
+            
+            print(clicked)
+            print(selectedSymptoms)
+            
+            
+            
+        }
+        
+    }
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -210,6 +269,43 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+
+    @IBAction func proceedBtn(_ sender: Any) {
+        
+        if selectedSymptoms.count <= 3 {
+            
+            let errorAlert = UIAlertController(title: "Error", message: "You Have Only Selected \(selectedSymptoms.count) Out Of A Minimum Of 3 Symptoms", preferredStyle: .alert)
+            
+            let errorAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            errorAlert.addAction(errorAction)
+            
+            self.present(errorAlert, animated: true, completion: nil)
+
+        
+        } else {
+            
+            print(selectedSymptoms)
+            
+            performSegue(withIdentifier: "2-1", sender: selectedSymptoms)
+            
+        }
+        
+
+        
+    }
+    
+    
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+            if let destination = segue.destination as? SymptomChecker {
+
+                destination.symptomArray = sender as! [Symptoms]
+                    destination.completedSearch = "Completed"
+                
+                }
+    
+        }
     
     
     

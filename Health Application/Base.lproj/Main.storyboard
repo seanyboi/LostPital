@@ -55,6 +55,7 @@
                                     <constraint firstItem="qtF-1Z-aa9" firstAttribute="centerY" secondItem="9Aq-fk-DuU" secondAttribute="centerY" id="HAz-uN-TZF"/>
                                     <constraint firstAttribute="height" constant="75" id="Hjy-qm-CnZ">
                                         <variation key="heightClass=compact-widthClass=compact" constant="50"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="50"/>
                                     </constraint>
                                     <constraint firstItem="CZ5-Nr-kxA" firstAttribute="top" secondItem="9Aq-fk-DuU" secondAttribute="top" constant="25" id="bNr-a8-A9Q">
                                         <variation key="heightClass=compact-widthClass=compact" constant="11"/>
@@ -68,20 +69,21 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="47u-vm-pet">
-                                        <variation key="heightClass=compact-widthClass=compact" constant="150"/>
+                                        <variation key="heightClass=compact-widthClass=compact" constant="100"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="195"/>
                                         <variation key="heightClass=regular-widthClass=regular" constant="450"/>
                                     </constraint>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymptomName" rowHeight="50" id="Kva-gA-tvz" customClass="SymptomCell" customModule="Health_Application" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymptomName" rowHeight="35" id="Kva-gA-tvz" customClass="SymptomCell" customModule="Health_Application" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kva-gA-tvz" id="A4q-gZ-WN8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UZ-Yp-60S">
-                                                    <rect key="frame" x="10" y="10" width="355" height="30"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="14.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -100,8 +102,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="SCa-Ha-fvI">
-                                <rect key="frame" x="10" y="425" width="355" height="108"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SCa-Ha-fvI">
+                                <rect key="frame" x="10" y="395" width="355" height="108"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HJo-rY-nfY">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="28"/>
@@ -123,7 +125,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JOf-4t-z5g">
-                                        <rect key="frame" x="0.0" y="78" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="355" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmJ-OA-TjY">
                                                 <rect key="frame" x="0.0" y="0.0" width="177.5" height="30"/>
@@ -139,16 +141,35 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nQG-6E-ot5">
+                                        <rect key="frame" x="0.0" y="78" width="355" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius for Search:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTe-UV-dTL" userLabel="Radius for Search:">
+                                                <rect key="frame" x="0.0" y="0.0" width="177.5" height="30"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your year of birth..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ijK-o2-uc1">
+                                                <rect key="frame" x="177.5" y="0.0" width="177.5" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <viewLayoutGuide key="safeArea" id="dQg-R7-mGj"/>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="JOf-4t-z5g" secondAttribute="trailing" id="4kh-fo-ulJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="JOf-4t-z5g" secondAttribute="bottom" id="SR2-bF-ZpS"/>
+                                    <constraint firstAttribute="trailing" secondItem="nQG-6E-ot5" secondAttribute="trailing" id="9jW-G0-O60"/>
                                     <constraint firstItem="HJo-rY-nfY" firstAttribute="top" secondItem="SCa-Ha-fvI" secondAttribute="top" id="chH-FQ-0Ri"/>
+                                    <constraint firstItem="nQG-6E-ot5" firstAttribute="leading" secondItem="SCa-Ha-fvI" secondAttribute="leading" id="eNW-EQ-ut9"/>
                                     <constraint firstAttribute="trailing" secondItem="HJo-rY-nfY" secondAttribute="trailing" id="pLQ-uv-6iY"/>
                                     <constraint firstItem="JOf-4t-z5g" firstAttribute="leading" secondItem="SCa-Ha-fvI" secondAttribute="leading" id="pOe-6X-CBs"/>
                                     <constraint firstItem="HJo-rY-nfY" firstAttribute="leading" secondItem="SCa-Ha-fvI" secondAttribute="leading" id="yyw-Zm-HCe"/>
                                 </constraints>
-                                <variation key="heightClass=compact-widthClass=compact" spacing="7"/>
+                                <variation key="heightClass=compact-widthClass=compact" spacing="5"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxQ-dM-kp6" customClass="Border" customModule="Health_Application" customModuleProvider="target">
                                 <rect key="frame" x="15" y="597" width="345" height="60"/>
@@ -157,6 +178,9 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="heightClass=compact-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                 </variation>
                                 <connections>
@@ -175,9 +199,10 @@
                                 <variation key="heightClass=compact-widthClass=compact" constant="5"/>
                             </constraint>
                             <constraint firstItem="9Aq-fk-DuU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vin-q5-Juo"/>
-                            <constraint firstItem="SCa-Ha-fvI" firstAttribute="top" secondItem="AbK-KK-aPa" secondAttribute="bottom" constant="50" id="aau-c6-4dO">
+                            <constraint firstItem="SCa-Ha-fvI" firstAttribute="top" secondItem="AbK-KK-aPa" secondAttribute="bottom" constant="20" id="aau-c6-4dO">
                                 <variation key="heightClass=compact-widthClass=compact" constant="10"/>
-                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="5"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
                             </constraint>
                             <constraint firstItem="SCa-Ha-fvI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="dDD-eM-Zd9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qxQ-dM-kp6" secondAttribute="trailing" constant="15" id="ffq-uV-o9k"/>
@@ -223,7 +248,7 @@
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for your symptoms..." translatesAutoresizingMaskIntoConstraints="NO" id="IMZ-Zh-sSE">
-                                        <rect key="frame" x="71" y="10" width="299" height="60"/>
+                                        <rect key="frame" x="71" y="10" width="299" height="59.5"/>
                                         <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
@@ -244,18 +269,25 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8u3-yO-qoB">
-                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="500"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="Gdx-ME-C4c">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="220"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="250"/>
+                                    </constraint>
+                                </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExtraSymptoms" rowHeight="50" id="dQw-BI-A8B" customClass="ExtraSymptomCell" customModule="Health_Application" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ExtraSymptoms" rowHeight="44" id="dQw-BI-A8B" customClass="ExtraSymptomCell" customModule="Health_Application" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dQw-BI-A8B" id="gGH-wE-u3L">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xze-KI-zZq">
-                                                    <rect key="frame" x="10" y="10" width="355" height="30"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -268,21 +300,43 @@
                                                 <constraint firstItem="xze-KI-zZq" firstAttribute="top" secondItem="gGH-wE-u3L" secondAttribute="top" constant="10" id="etW-rt-mmY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="symptomNameLabel" destination="xze-KI-zZq" id="cA5-vD-Xfb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-lw-e0Q" customClass="Border" customModule="Health_Application" customModuleProvider="target">
+                                <rect key="frame" x="10" y="595" width="355" height="52"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="26"/>
+                                <state key="normal" title="PROCEED">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="60"/>
+                                </variation>
+                                <connections>
+                                    <action selector="proceedBtn:" destination="TeK-lF-zEN" eventType="touchUpInside" id="M4N-fp-089"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8u3-yO-qoB" firstAttribute="leading" secondItem="Lot-zE-c3R" secondAttribute="leading" id="1Wn-YZ-Ym9"/>
+                            <constraint firstItem="Lot-zE-c3R" firstAttribute="trailing" secondItem="vd1-lw-e0Q" secondAttribute="trailing" constant="10" id="AMW-xM-nIo"/>
                             <constraint firstItem="Pnn-Jk-HnQ" firstAttribute="trailing" secondItem="Lot-zE-c3R" secondAttribute="trailing" id="CI8-m3-aq8"/>
-                            <constraint firstItem="Lot-zE-c3R" firstAttribute="bottom" secondItem="8u3-yO-qoB" secondAttribute="bottom" id="StG-eL-wsT"/>
+                            <constraint firstItem="Lot-zE-c3R" firstAttribute="bottom" secondItem="vd1-lw-e0Q" secondAttribute="bottom" constant="20" id="HWH-nd-O5n">
+                                <variation key="heightClass=compact-widthClass=compact" constant="2"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="vd1-lw-e0Q" firstAttribute="top" secondItem="8u3-yO-qoB" secondAttribute="bottom" constant="20" id="Zj1-CH-O5z">
+                                <variation key="heightClass=compact-widthClass=compact" constant="2"/>
+                            </constraint>
                             <constraint firstItem="Pnn-Jk-HnQ" firstAttribute="leading" secondItem="Lot-zE-c3R" secondAttribute="leading" id="ft5-hT-l74"/>
                             <constraint firstItem="8u3-yO-qoB" firstAttribute="top" secondItem="Pnn-Jk-HnQ" secondAttribute="bottom" id="m5I-q5-NSu"/>
                             <constraint firstItem="Lot-zE-c3R" firstAttribute="trailing" secondItem="8u3-yO-qoB" secondAttribute="trailing" id="mEN-ri-Vxs"/>
+                            <constraint firstItem="vd1-lw-e0Q" firstAttribute="leading" secondItem="Lot-zE-c3R" secondAttribute="leading" constant="10" id="p1k-zw-Tho"/>
                             <constraint firstItem="Pnn-Jk-HnQ" firstAttribute="top" secondItem="T4h-Nn-hV4" secondAttribute="top" id="u8U-og-L3t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lot-zE-c3R"/>
@@ -290,106 +344,12 @@
                     <connections>
                         <outlet property="searchBar" destination="IMZ-Zh-sSE" id="7j5-20-MLb"/>
                         <outlet property="searchingSymptomsTableView" destination="8u3-yO-qoB" id="nCd-Nr-wz1"/>
-                        <segue destination="JfG-F3-yoS" kind="showDetail" identifier="2-3" id="pQB-kW-BYP"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="2-1" id="Rxb-vB-kkc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hyk-Hn-HjH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1968.8" y="-152.47376311844079"/>
-        </scene>
-        <!--Further Questions-->
-        <scene sceneID="R2x-kP-XUv">
-            <objects>
-                <viewController id="JfG-F3-yoS" customClass="FurtherQuestions" customModule="Health_Application" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nph-2W-lBC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rjp-s3-AfF">
-                                <rect key="frame" x="0.0" y="20" width="375" height="75"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any of these further symptoms?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmA-u5-yaR">
-                                        <rect key="frame" x="14" y="26" width="347.5" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="cmA-u5-yaR" firstAttribute="centerX" secondItem="Rjp-s3-AfF" secondAttribute="centerX" id="BDb-sz-fsi"/>
-                                    <constraint firstItem="cmA-u5-yaR" firstAttribute="centerY" secondItem="Rjp-s3-AfF" secondAttribute="centerY" id="Gdv-cq-Mts"/>
-                                    <constraint firstAttribute="height" constant="75" id="IGB-fY-nqY">
-                                        <variation key="heightClass=compact-widthClass=compact" constant="50"/>
-                                    </constraint>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m8O-qI-5cd">
-                                <rect key="frame" x="0.0" y="95" width="375" height="467"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AdditionalSymptoms" id="0I0-Yc-ePC" customClass="SuggestedSymptomsCell" customModule="Health_Application" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0I0-Yc-ePC" id="O5O-8c-duV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symptom X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXE-kO-g8w">
-                                                    <rect key="frame" x="5" y="5" width="365" height="33.5"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="BXE-kO-g8w" firstAttribute="leading" secondItem="O5O-8c-duV" secondAttribute="leading" constant="5" id="2iM-wa-Gk4"/>
-                                                <constraint firstItem="BXE-kO-g8w" firstAttribute="top" secondItem="O5O-8c-duV" secondAttribute="top" constant="5" id="3fX-OZ-BTU"/>
-                                                <constraint firstAttribute="trailing" secondItem="BXE-kO-g8w" secondAttribute="trailing" constant="5" id="a3c-L9-5yC"/>
-                                                <constraint firstAttribute="bottom" secondItem="BXE-kO-g8w" secondAttribute="bottom" constant="5" id="oCM-Zk-ZNh"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="suggestedSymptomLabel" destination="BXE-kO-g8w" id="qqX-Pt-nHM"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQy-Vi-eXk">
-                                <rect key="frame" x="10" y="612" width="355" height="45"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
-                                <state key="normal" title="SAVE">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveButton:" destination="JfG-F3-yoS" eventType="touchUpInside" id="5tU-c1-0Lb"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="9qL-1w-bho" firstAttribute="trailing" secondItem="TQy-Vi-eXk" secondAttribute="trailing" constant="10" id="DSa-BZ-wIr"/>
-                            <constraint firstItem="Rjp-s3-AfF" firstAttribute="trailing" secondItem="9qL-1w-bho" secondAttribute="trailing" id="HFV-5p-LCh"/>
-                            <constraint firstItem="m8O-qI-5cd" firstAttribute="leading" secondItem="9qL-1w-bho" secondAttribute="leading" id="Ixc-rv-5lh"/>
-                            <constraint firstItem="Rjp-s3-AfF" firstAttribute="leading" secondItem="9qL-1w-bho" secondAttribute="leading" id="Lcs-dO-rxo"/>
-                            <constraint firstItem="9qL-1w-bho" firstAttribute="trailing" secondItem="m8O-qI-5cd" secondAttribute="trailing" id="Q1J-Ka-lYM"/>
-                            <constraint firstItem="Rjp-s3-AfF" firstAttribute="top" secondItem="9qL-1w-bho" secondAttribute="top" id="UWB-54-DMV"/>
-                            <constraint firstItem="TQy-Vi-eXk" firstAttribute="leading" secondItem="9qL-1w-bho" secondAttribute="leading" constant="10" id="cWK-Vg-fwx"/>
-                            <constraint firstItem="TQy-Vi-eXk" firstAttribute="top" secondItem="m8O-qI-5cd" secondAttribute="bottom" constant="50" id="kIT-nO-RxY"/>
-                            <constraint firstItem="9qL-1w-bho" firstAttribute="bottom" secondItem="TQy-Vi-eXk" secondAttribute="bottom" constant="10" id="lNT-YD-XBw"/>
-                            <constraint firstItem="m8O-qI-5cd" firstAttribute="top" secondItem="Rjp-s3-AfF" secondAttribute="bottom" id="wVw-zb-MMF"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="9qL-1w-bho"/>
-                    </view>
-                    <connections>
-                        <outlet property="additionalSymptomsTableView" destination="m8O-qI-5cd" id="cNT-ip-rx7"/>
-                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="3-1" id="aLY-f9-gkZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7H5-CA-8Rk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1968.8" y="-1253.5232383808097"/>
         </scene>
         <!--Diagnosis Questions-->
         <scene sceneID="TN9-lb-PXO">
@@ -527,7 +487,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vb0-5H-Gev">
-                                                <rect key="frame" x="10" y="93.5" width="355" height="36"/>
+                                                <rect key="frame" x="10" y="94" width="355" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf7-Cz-8u4" customClass="Border" customModule="Health_Application" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="111.5" height="36"/>

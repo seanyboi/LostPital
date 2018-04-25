@@ -13,14 +13,12 @@
 		14555C49207D0B35005FBAA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14555C48207D0B35005FBAA6 /* Assets.xcassets */; };
 		14555C4C207D0B35005FBAA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14555C4A207D0B35005FBAA6 /* LaunchScreen.storyboard */; };
 		14555C57207D0C7F005FBAA6 /* SearchingSymptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C56207D0C7F005FBAA6 /* SearchingSymptoms.swift */; };
-		14555C59207D0CF0005FBAA6 /* FurtherQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */; };
 		14555C5B207D0D22005FBAA6 /* DiagnosisQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5A207D0D22005FBAA6 /* DiagnosisQuestions.swift */; };
 		14555C5D207D0D5A005FBAA6 /* MapOfHospitals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */; };
 		14555C5F207D1562005FBAA6 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C5E207D1562005FBAA6 /* Border.swift */; };
 		14555C63207D2412005FBAA6 /* SymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C62207D2412005FBAA6 /* SymptomCell.swift */; };
 		14555C65207D2923005FBAA6 /* ExtraSymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14555C64207D2923005FBAA6 /* ExtraSymptomCell.swift */; };
 		1490DE28207FABEC0072E379 /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1490DE27207FABEC0072E379 /* Symptoms.swift */; };
-		1490DE2A207FBB7D0072E379 /* SuggestedSymptomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1490DE29207FBB7D0072E379 /* SuggestedSymptomsCell.swift */; };
 		14F26944208637D800BAECBD /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F26943208637D800BAECBD /* Diagnosis.swift */; };
 		14F269482086386B00BAECBD /* DiagnosisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F269472086386B00BAECBD /* DiagnosisCell.swift */; };
 		14F2694A2086546700BAECBD /* PotentialDiagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F269492086546700BAECBD /* PotentialDiagnosis.swift */; };
@@ -35,14 +33,12 @@
 		14555C4B207D0B35005FBAA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14555C4D207D0B35005FBAA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14555C56207D0C7F005FBAA6 /* SearchingSymptoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingSymptoms.swift; sourceTree = "<group>"; };
-		14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurtherQuestions.swift; sourceTree = "<group>"; };
 		14555C5A207D0D22005FBAA6 /* DiagnosisQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisQuestions.swift; sourceTree = "<group>"; };
 		14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOfHospitals.swift; sourceTree = "<group>"; };
 		14555C5E207D1562005FBAA6 /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		14555C62207D2412005FBAA6 /* SymptomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomCell.swift; sourceTree = "<group>"; };
 		14555C64207D2923005FBAA6 /* ExtraSymptomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraSymptomCell.swift; sourceTree = "<group>"; };
 		1490DE27207FABEC0072E379 /* Symptoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
-		1490DE29207FBB7D0072E379 /* SuggestedSymptomsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedSymptomsCell.swift; sourceTree = "<group>"; };
 		14F26943208637D800BAECBD /* Diagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnosis.swift; sourceTree = "<group>"; };
 		14F269472086386B00BAECBD /* DiagnosisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisCell.swift; sourceTree = "<group>"; };
 		14F269492086546700BAECBD /* PotentialDiagnosis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PotentialDiagnosis.swift; sourceTree = "<group>"; };
@@ -109,7 +105,6 @@
 				14555C5E207D1562005FBAA6 /* Border.swift */,
 				14555C62207D2412005FBAA6 /* SymptomCell.swift */,
 				14555C64207D2923005FBAA6 /* ExtraSymptomCell.swift */,
-				1490DE29207FBB7D0072E379 /* SuggestedSymptomsCell.swift */,
 				14F269472086386B00BAECBD /* DiagnosisCell.swift */,
 			);
 			path = View;
@@ -120,7 +115,6 @@
 			children = (
 				14555C43207D0B35005FBAA6 /* SymptomChecker.swift */,
 				14555C56207D0C7F005FBAA6 /* SearchingSymptoms.swift */,
-				14555C58207D0CF0005FBAA6 /* FurtherQuestions.swift */,
 				14555C5A207D0D22005FBAA6 /* DiagnosisQuestions.swift */,
 				14F269492086546700BAECBD /* PotentialDiagnosis.swift */,
 				14555C5C207D0D5A005FBAA6 /* MapOfHospitals.swift */,
@@ -259,10 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14555C59207D0CF0005FBAA6 /* FurtherQuestions.swift in Sources */,
 				14555C65207D2923005FBAA6 /* ExtraSymptomCell.swift in Sources */,
 				14555C5F207D1562005FBAA6 /* Border.swift in Sources */,
-				1490DE2A207FBB7D0072E379 /* SuggestedSymptomsCell.swift in Sources */,
 				14555C57207D0C7F005FBAA6 /* SearchingSymptoms.swift in Sources */,
 				14555C5B207D0D22005FBAA6 /* DiagnosisQuestions.swift in Sources */,
 				14F269482086386B00BAECBD /* DiagnosisCell.swift in Sources */,

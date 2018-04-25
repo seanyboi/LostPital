@@ -72,6 +72,7 @@ class PotentialDiagnosis: UIViewController, UITableViewDelegate, UITableViewData
                 
                 destination.potentialProblem = diagnosis
                 
+                
             }
         }
         
