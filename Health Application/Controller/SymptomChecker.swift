@@ -22,6 +22,8 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var searchingSymptoms: UIButton!
     
+    @IBOutlet weak var radiusTextField: UITextField!
+    
     var symptomArray = [Symptoms]()
     var completedSearch = ""
     
@@ -44,6 +46,12 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Must set delegates.
         symptomCheckerTable.delegate = self
         symptomCheckerTable.dataSource = self
+        
+        for x in symptomArray {
+            
+            print(x.id)
+            
+        }
         
     }
     
@@ -79,12 +87,58 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     //Allows navigation to next controller.
+    
+    func integerCheck(stringBeingChecked: String) -> Bool {
+        
+        return Int(stringBeingChecked) != nil
+    }
 
     @IBAction func searchButton(_ sender: Any) {
         
-        performSegue(withIdentifier: "1-4", sender: nil)
+        if (yearOfBirthTextField.text == "" && radiusTextField.text == "") || yearOfBirthTextField.text == "" || radiusTextField.text == "" {
+            
+            let errorAlert = UIAlertController(title: "Error", message: "Please ensure you have entered an age and a radius for search", preferredStyle: .alert)
+            
+            let errorAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            errorAlert.addAction(errorAction)
+            
+            self.present(errorAlert, animated: true, completion: nil)
+            
+        } else if integerCheck(stringBeingChecked: radiusTextField.text!) == false || integerCheck(stringBeingChecked: yearOfBirthTextField.text!) == false {
+            
+            let errorAlert = UIAlertController(title: "Error", message: "Please ensure you have entered an integer as the age or radius", preferredStyle: .alert)
+            
+            let errorAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            errorAlert.addAction(errorAction)
+            
+            self.present(errorAlert, animated: true, completion: nil)
+            
+        } else {
+            
+            performSegue(withIdentifier: "1-4", sender: symptomArray)
+
+        }
+        
         
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? DiagnosisQuestions {
+            
+            destination.selectedSymptoms = sender as! [Symptoms]
+            destination.age = Int(yearOfBirthTextField.text!)!
+            destination.radius = Int(radiusTextField.text!)!
+            destination.sex = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)!
+            
+            
+        }
+        
+    }
+    
     
     @IBAction func addingSymptomButton(_ sender: Any) {
         

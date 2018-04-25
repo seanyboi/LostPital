@@ -25,8 +25,6 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -272,7 +270,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
 
     @IBAction func proceedBtn(_ sender: Any) {
         
-        if selectedSymptoms.count <= 3 {
+        if selectedSymptoms.count < 3 {
             
             let errorAlert = UIAlertController(title: "Error", message: "You Have Only Selected \(selectedSymptoms.count) Out Of A Minimum Of 3 Symptoms", preferredStyle: .alert)
             
@@ -303,7 +301,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
                 destination.symptomArray = sender as! [Symptoms]
                     destination.completedSearch = "Completed"
                 
-                }
+            }
     
         }
     

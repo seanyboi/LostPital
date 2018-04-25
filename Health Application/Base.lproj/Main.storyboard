@@ -214,6 +214,7 @@
                     <connections>
                         <outlet property="additionalInfoStack" destination="SCa-Ha-fvI" id="fRH-5W-rkE"/>
                         <outlet property="genderSegmentedControl" destination="c3S-F7-Sbt" id="fHq-bo-Qzk"/>
+                        <outlet property="radiusTextField" destination="ijK-o2-uc1" id="43K-YD-Im6"/>
                         <outlet property="searchSymptomsBtn" destination="CZ5-Nr-kxA" id="mtK-IT-vkk"/>
                         <outlet property="searchingSymptoms" destination="qxQ-dM-kp6" id="sHO-Ql-Oy0"/>
                         <outlet property="symptomCheckerTable" destination="AbK-KK-aPa" id="K8J-Hn-XHu"/>

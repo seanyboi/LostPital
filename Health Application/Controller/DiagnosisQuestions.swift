@@ -32,8 +32,10 @@ class DiagnosisQuestions: UIViewController {
 
     var addedSymptom = ""
     
-    var sex = "male"
-    var age = 25
+    var sex = ""
+    var age = 0
+    var radius = 0
+    
     var evidence = [[String:Any]]()
     var evidenceIDs = [String]()        // TODO pass this through later (should be added to on previous view, e.g. abdominal pane id)
     var extras: [String:Any] = ["disable_groups": true]
@@ -41,7 +43,10 @@ class DiagnosisQuestions: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        print(selectedSymptoms)
+        print(sex)
+        print(age)
+        print(radius)
         
         
     }
