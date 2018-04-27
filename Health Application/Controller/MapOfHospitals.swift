@@ -15,8 +15,6 @@ var lon2 : Double = 0.0
 var icon : String = ""
 var rating2 : Double = 0.0
 
-//var type2 : String = ""
-
 var HealthPlaces2:[HealthPlace] = []
 
 struct HealthPlace {
@@ -28,75 +26,29 @@ struct HealthPlace {
     //    let type: String
 }
 
-class ViewController: UIViewController, GMSMapViewDelegate {
+class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     
-    var potentialProblem : String!
-    var radius : Int!
-    var type : String!
+    var radius = 0
+    var type = ""
+    var potentialProblem = ""
+    
+
     
     @IBOutlet weak var viewToDisplayMap: UIView!
     
-    // Determine which potential type of place the user may wish to visit
-    /*func DeterminePlaceType() {
-     if potentialProblem.lowercased().range(of:"tooth") != nil ||
-     potentialProblem.lowercased().range(of:"teeth") != nil ||
-     potentialProblem.lowercased().range(of:"mouth") != nil ||
-     potentialProblem.lowercased().range(of:"gum") != nil {
-     type = "dentist"
-     } else if potentialProblem.lowercased().range(of:"head") != nil {
-     type = "pharmacy"
-     } else if potentialProblem.lowercased().range(of:"arm") != nil ||
-     potentialProblem.lowercased().range(of:"leg") != nil {
-     type = "physiotherapist"
-     } else {
-     type = "hospital"
-     }
-     }*/
-    
-    func getHealthPlaces (request: URL, completion:@escaping (Data?) -> Void) {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return completion(nil)
-            }
-            return completion(data)
-            }.resume()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(potentialProblem)
-        //print(radius)
         
-        //DeterminePlaceType()
-        //Original
-        /*
-         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-         viewToDisplayMap = mapView
-         
-         // Creates a marker in the center of the map.
-         let marker = GMSMarker()
-         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-         marker.title = "Sydney"
-         marker.snippet = "Australia"
-         marker.map = mapView*/
+        DeterminePlaceType()
         
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.809472,-1.554973&radius=\(radius)&types=\(type)&key=AIzaSyDV69zY7VYkfaaxRwyvP3YFwvWJ6gC8DM8"
         
-        //Simulated Coordinates:
-        //School of Electronic and Electrical Engineering
-        //188 Woodhouse Ln, Leeds LS2, UK
-        //Latitude: 53.809472 | Longitude: -1.554973
+        let url = URL(string : urlString)
         
+        //navigationItem.title = "Health App Map"
         
-        //let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC-IopjQwmhTpgJCV6aDYHhYiV6RG0H5G8&&location=53.8020860,-1.5644430&radius=\(radius)&types=\(type)")
-        
-        let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.809472,-1.554973&radius=5000&types=dentist&key=AIzaSyDV69zY7VYkfaaxRwyvP3YFwvWJ6gC8DM8&sensor=true")
-        
-        navigationItem.title = "Health App Map"
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 53.8004533, longitude: -1.5542509, zoom: 15)
-        let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
+        let camera = GMSCameraPosition.camera(withLatitude: 53.809472, longitude: -1.554973, zoom: 15)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         mapView.isMyLocationEnabled = true;
         mapView.settings.compassButton = true;
@@ -106,21 +58,44 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         Json(myurl: url!, mymapView2: mapView)
         
         view = mapView
+        
+
     }
     
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    // Determine which potential type of place the user may wish to visit
+    func DeterminePlaceType() {
+        if potentialProblem.lowercased().range(of:"tooth") != nil ||
+            potentialProblem.lowercased().range(of:"teeth") != nil ||
+            potentialProblem.lowercased().range(of:"mouth") != nil ||
+            potentialProblem.lowercased().range(of:"gum") != nil {
+            type = "dentist"
+        } else if potentialProblem.lowercased().range(of:"head") != nil {
+            type = "pharmacy"
+        } else if potentialProblem.lowercased().range(of:"arm") != nil ||
+            potentialProblem.lowercased().range(of:"leg") != nil {
+            type = "physiotherapist"
+        } else {
+            type = "hospital"
+        }
+    }
+    
+    func getHealthPlaces (request: URL, completion:@escaping (Data?) -> Void) {
+        _ = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return completion(nil)
+            }
+            return completion(data)
+            }.resume()
+    }
+    
     func updateMap(mymapView : GMSMapView)
     {
         DispatchQueue.main.async() {
-            
-            //Manual Testing
-            /*HealthPlaces.append(HealthPlace.init(name: "place 1", latitude: 53.801224, longitude: -1.5569374, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png", rating: 5.5))
-             HealthPlaces.append(HealthPlace.init(name: "place 2", latitude: 53.80323610000001, longitude: -1.5557941, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png", rating: 7.5))
-             HealthPlaces.append(HealthPlace.init(name: "place 3", latitude: 53.8070725, longitude: -1.5573777, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png", rating: 7.5))
-             */
             
             print("Async Task ended!")
             
@@ -137,6 +112,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             self.focusMapToShowAllMarkers(mymapView: mymapView, HealthPlaces: HealthPlaces2)
         }
         
+        //self.focusMapToShowAllMarkers(mymapView: mymapView, HealthPlaces: HealthPlaces2)
+        
     }
     
     func Json(myurl: URL, mymapView2 : GMSMapView) /*-> [HealthPlace] */{
@@ -152,7 +129,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         getHealthPlaces(request: myurl) {data in
             do {
-                self.updateMap(mymapView: mymapView2)
+                
                 
                 if let data = data,
                     let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any],
@@ -198,6 +175,9 @@ class ViewController: UIViewController, GMSMapViewDelegate {
                         }
                         print(HealthPlaces2[i])
                     }
+                    
+                    self.updateMap(mymapView: mymapView2)
+                    
                 }
             }
             catch let error as NSError
@@ -208,7 +188,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         //return HealthPlaces
     }
     
-    func focusMapToShowAllMarkers(mymapView: GMSMapView, HealthPlaces:[HealthPlace]) {
+    func focusMapToShowAllMarkers(mymapView: GMSMapView, HealthPlaces : [HealthPlace]) {
         
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: HealthPlaces.first!.latitude,longitude: HealthPlaces.first!.longitude)
         var bounds: GMSCoordinateBounds = GMSCoordinateBounds(coordinate: myLocation, coordinate: myLocation)
@@ -240,4 +220,32 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         UIGraphicsEndImageContext()
         return newImage
     }
+    
+    func OriginalMap(){
+        /*
+         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+         viewToDisplayMap = mapView
+         
+         // Creates a marker in the center of the map.
+         let marker = GMSMarker()
+         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+         marker.title = "Sydney"
+         marker.snippet = "Australia"
+         marker.map = mapView*/
+    }
+    
+    func manualtests(){
+        /*HealthPlaces.append(HealthPlace.init(name: "place 1", latitude: 53.801224, longitude: -1.5569374, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png
+         
+         ", rating: 5.5))
+         
+         HealthPlaces.append(HealthPlace.init(name: "place 2", latitude: 53.80323610000001, longitude: -1.5557941, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png
+         
+         ", rating: 7.5))
+         
+         HealthPlaces.append(HealthPlace.init(name: "place 3", latitude: 53.8070725, longitude: -1.5573777, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png", rating: 7.5))
+         */
+    }
+    
 }

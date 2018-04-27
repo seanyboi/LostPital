@@ -78,7 +78,7 @@ class DiagnosisQuestions: UIViewController {
         
         getQuestions(request: request) {data in
             do {
-                let responseJSON = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                _ = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                 self.diag = try JSONDecoder().decode(Diagnosis.self, from: data!)
 
                 let symptom = Symptoms()

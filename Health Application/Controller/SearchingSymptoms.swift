@@ -45,6 +45,10 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
     // Function for setting up GET request for diagnosis from Infermedica
     func callingAPI() {
         

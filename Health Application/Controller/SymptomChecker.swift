@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var additionalInfoStack: UIStackView!
     
@@ -75,6 +75,13 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return symptomArray.count
         
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.view.endEditing(true)
+        return false
         
     }
     

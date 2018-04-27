@@ -53,6 +53,7 @@ class PotentialDiagnosis: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destination = segue.destination as? MapOfHospitals {
+            
             destination.radius = radius
             destination.potentialProblem = selectedRow.name
         }
