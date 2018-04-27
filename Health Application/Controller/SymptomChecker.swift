@@ -46,6 +46,8 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Must set delegates.
         symptomCheckerTable.delegate = self
         symptomCheckerTable.dataSource = self
+        yearOfBirthTextField.delegate = self
+        radiusTextField.delegate = self
         
     }
     
@@ -86,7 +88,6 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-
     //Allows navigation to next controller.
     
     func integerCheck(stringBeingChecked: String) -> Bool {
