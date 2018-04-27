@@ -23,7 +23,7 @@ class DiagnosisCell: UITableViewCell {
     func updateUI(condition: Diagnosis.Condition) {
         suggestedDiagnosisLabel.font = UIFont(name:"Avenir", size:18)
         // Rounding to 3dp here, to avoid extremely long decimals
-        let probabilityDouble = Double(condition.probability! as NSNumber)
+        let probabilityDouble = Double(truncating: condition.probability! as NSNumber)
         let probabilityRounded = Double(round(1000*probabilityDouble)/1000)
         suggestedDiagnosisLabel.text = "Condition: \(condition.name!) \nProbability: \(probabilityRounded)"
         suggestedDiagnosisLabel.numberOfLines = 0;

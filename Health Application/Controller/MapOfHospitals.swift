@@ -30,6 +30,7 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     
     var radius = 0
     var type = ""
+    var key = "AIzaSyDV69zY7VYkfaaxRwyvP3YFwvWJ6gC8DM8"
     var potentialProblem = ""
     
 
@@ -41,7 +42,7 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
         
         DeterminePlaceType()
         
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.809472,-1.554973&radius=\(radius)&types=\(type)&key=AIzaSyDV69zY7VYkfaaxRwyvP3YFwvWJ6gC8DM8"
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.809472,-1.554973&radius=\(radius)&types=\(type)&key=\(key)"
         
         let url = URL(string : urlString)
         
@@ -108,7 +109,6 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
                 
                 if let url = URL(string: state.icon) { self.downloadasync(url: url, state_marker: state_marker) }
             }
-            
             self.focusMapToShowAllMarkers(mymapView: mymapView, HealthPlaces: HealthPlaces2)
         }
         
