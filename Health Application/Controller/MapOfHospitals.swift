@@ -28,7 +28,7 @@ struct HealthPlace {
     //    let type: String
 }
 
-class MapOfHospitals: UIViewController {
+class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     
     var potentialProblem : String!
     var radius : Int!
