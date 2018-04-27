@@ -31,14 +31,34 @@ struct HealthPlace {
 class MapOfHospitals: UIViewController {
     
     var potentialProblem : String!
-    var radius: Int!
+    var radius : Int!
+    var type : String!
     
     @IBOutlet weak var viewToDisplayMap: UIView!
+    
+    // Determine which potential type of place the user may wish to visit
+    func DeterminePlaceType() {
+        if potentialProblem.lowercased().range(of:"tooth") != nil ||
+            potentialProblem.lowercased().range(of:"teeth") != nil ||
+             potentialProblem.lowercased().range(of:"mouth") != nil ||
+              potentialProblem.lowercased().range(of:"gum") != nil {
+            type = "dentist"
+        } else if potentialProblem.lowercased().range(of:"head") != nil {
+            type = "pharmacy"
+        } else if potentialProblem.lowercased().range(of:"arm") != nil ||
+            potentialProblem.lowercased().range(of:"leg") != nil {
+            type = "physiotherapist"
+        } else {
+            type = "hospital"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(potentialProblem)
         print(radius)
+        
+        DeterminePlaceType()
         //Original
         /*
          let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
@@ -53,7 +73,7 @@ class MapOfHospitals: UIViewController {
          marker.map = mapView*/
         
         
-        let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC-IopjQwmhTpgJCV6aDYHhYiV6RG0H5G8&&location=53.8020860,-1.5644430&radius=\(radius)&types=dentist")
+        let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC-IopjQwmhTpgJCV6aDYHhYiV6RG0H5G8&&location=53.8020860,-1.5644430&radius=\(radius)&types=\(type)")
         
         navigationItem.title = "Health App Map"
         
