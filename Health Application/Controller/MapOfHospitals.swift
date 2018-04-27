@@ -28,7 +28,7 @@ struct HealthPlace {
     //    let type: String
 }
 
-class MapOfHospitals: UIViewController, GMSMapViewDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate {
     
     var potentialProblem : String!
     var radius : Int!
@@ -37,21 +37,21 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var viewToDisplayMap: UIView!
     
     // Determine which potential type of place the user may wish to visit
-    func DeterminePlaceType() {
-        if potentialProblem.lowercased().range(of:"tooth") != nil ||
-            potentialProblem.lowercased().range(of:"teeth") != nil ||
-            potentialProblem.lowercased().range(of:"mouth") != nil ||
-            potentialProblem.lowercased().range(of:"gum") != nil {
-            type = "dentist"
-        } else if potentialProblem.lowercased().range(of:"head") != nil {
-            type = "pharmacy"
-        } else if potentialProblem.lowercased().range(of:"arm") != nil ||
-            potentialProblem.lowercased().range(of:"leg") != nil {
-            type = "physiotherapist"
-        } else {
-            type = "hospital"
-        }
-    }
+    /*func DeterminePlaceType() {
+     if potentialProblem.lowercased().range(of:"tooth") != nil ||
+     potentialProblem.lowercased().range(of:"teeth") != nil ||
+     potentialProblem.lowercased().range(of:"mouth") != nil ||
+     potentialProblem.lowercased().range(of:"gum") != nil {
+     type = "dentist"
+     } else if potentialProblem.lowercased().range(of:"head") != nil {
+     type = "pharmacy"
+     } else if potentialProblem.lowercased().range(of:"arm") != nil ||
+     potentialProblem.lowercased().range(of:"leg") != nil {
+     type = "physiotherapist"
+     } else {
+     type = "hospital"
+     }
+     }*/
     
     func getHealthPlaces (request: URL, completion:@escaping (Data?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -65,10 +65,10 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(potentialProblem)
-        print(radius)
+        //print(potentialProblem)
+        //print(radius)
         
-        DeterminePlaceType()
+        //DeterminePlaceType()
         //Original
         /*
          let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
@@ -89,7 +89,9 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
         //Latitude: 53.809472 | Longitude: -1.554973
         
         
-        let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC-IopjQwmhTpgJCV6aDYHhYiV6RG0H5G8&&location=53.8020860,-1.5644430&radius=\(radius)&types=\(type)")
+        //let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC-IopjQwmhTpgJCV6aDYHhYiV6RG0H5G8&&location=53.8020860,-1.5644430&radius=\(radius)&types=\(type)")
+        
+        let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.809472,-1.554973&radius=5000&types=dentist&key=AIzaSyDV69zY7VYkfaaxRwyvP3YFwvWJ6gC8DM8&sensor=true")
         
         navigationItem.title = "Health App Map"
         
@@ -104,7 +106,6 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
         Json(myurl: url!, mymapView2: mapView)
         
         view = mapView
-        
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -229,7 +230,7 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     func downloadasync(url: URL, state_marker : GMSMarker){
         getDataFromUrl(url: url) { data, response, error in guard let data = data, error == nil else { return }
             print(response?.suggestedFilename ?? url.lastPathComponent)
-            DispatchQueue.main.async() { state_marker.icon = UIImage(data: data) } }
+            DispatchQueue.main.async() { state_marker.icon = self.imageWithImage(image: UIImage(data: data)!, scaledToSize: CGSize(width: 33.0, height: 33.0)) } }
     }
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
