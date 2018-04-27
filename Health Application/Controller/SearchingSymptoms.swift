@@ -45,6 +45,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+    // Function for setting up GET request for diagnosis from Infermedica
     func callingAPI() {
         
         let url = URL(string: "https://api.infermedica.com/v2/symptoms")!
@@ -56,6 +57,8 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         request.setValue("e2d0f821e118e1bd3fa21290d5bc7e22", forHTTPHeaderField: "App-Key")
         request.setValue("true", forHTTPHeaderField: "Dev-Mode")
         
+        // Closure necessary to ensure asynchronous API call is completed before updating
+        // UITableView
         getSymptomNames(request: request) { data in
             do {
                 
@@ -66,9 +69,6 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
                 for element in symptoms {
                     
                     self.searchingArray.append(element)
-                    
-                    
-                    //print("\(element.id) - \(element.name)")
                     
                 }
                 
@@ -84,14 +84,13 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
 
-    
+    // Send the request to the URL, uses a completionHandler to ensure we obtain
+    // data, and handle cases where the URL does not respond
     func getSymptomNames (request: URLRequest, completion: @escaping (Data?) -> Void) {
         
         _ = URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let data = data, error == nil else {
-                
-                //print(error?.localizedDescription ?? "No data")
                 
                 return completion(nil)
             }
@@ -102,7 +101,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
-    
+    // Updates the UITableView once the asynchronous API call has been completed
     func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
         DispatchQueue.main.async {
             self.searchingSymptomsTableView.reloadData()
@@ -235,16 +234,9 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
 
             }
             
-            
-            print(clicked)
-            print(selectedSymptoms)
-            
-            
-            
         }
         
     }
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -283,8 +275,6 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
         } else {
             
-            print(selectedSymptoms)
-            
             performSegue(withIdentifier: "2-1", sender: selectedSymptoms)
             
         }
@@ -293,17 +283,17 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+    // Passes through necessary variables to next Controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-            if let destination = segue.destination as? SymptomChecker {
+        if let destination = segue.destination as? SymptomChecker {
 
-                destination.symptomArray = sender as! [Symptoms]
-                    destination.completedSearch = "Completed"
+            destination.symptomArray = sender as! [Symptoms]
+            destination.completedSearch = "Completed"
                 
-            }
-    
         }
+    
+    }
     
     
     

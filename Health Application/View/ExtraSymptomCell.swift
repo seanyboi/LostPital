@@ -14,19 +14,19 @@ class ExtraSymptomCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         accessoryType = .none
     }
     
+    // Format text appropriately, in case it takes up multiple lines
     func updateUI(symptomNames: Symptoms) {
-        
+        symptomNameLabel.font = UIFont(name:"Avenir", size:18)
         symptomNameLabel.text = symptomNames.name
-        
+        symptomNameLabel.numberOfLines = 0;
+        symptomNameLabel.lineBreakMode = .byWordWrapping
     }
 
 

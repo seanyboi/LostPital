@@ -14,14 +14,14 @@ class SymptomCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    
+    // Format text appropriately, in case it takes up multiple lines
     func updateUI(symptomNames: Symptoms) {
-
+        symptomName.font = UIFont(name:"Avenir", size:18)
         symptomName.text = symptomNames.name
-
+        symptomName.numberOfLines = 0;
+        symptomName.lineBreakMode = .byWordWrapping
     }
 
 }

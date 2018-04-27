@@ -26,44 +26,42 @@ class DiagnosisQuestions: UIViewController {
     
     var suggestedSymptomsArray = [Symptoms]()
     
-    var selectedSymptoms = [Symptoms]()
+    var selectedSymptoms = [Symptoms]() // Symptoms up to this point
     
     var clicked = [String]()
 
     var addedSymptom = ""
     
+    var question = ""
+    var questionCounter = 1
+    
+    // Selections passed through from previous Controller
     var sex = ""
     var age = 0
     var radius = 0
     
     var evidence = [[String:Any]]()
-    var evidenceIDs = [String]()        // TODO pass this through later (should be added to on previous view, e.g. abdominal pane id)
-    var extras: [String:Any] = ["disable_groups": true]
+    var diag : Diagnosis!
+    var extras = ["disable_groups": true]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(selectedSymptoms)
-        print(sex)
-        print(age)
-        print(radius)
         
+        // Add all symptoms to evidence array
+        for symptom in selectedSymptoms {
+            evidence.append(["id": (symptom.id), "choice_id": "present", "initial": true])
+        }
+        callingApi()
         
     }
     
-    
+        // Function for setting up GET request for diagnosis from Infermedica
     func callingApi() {
         
-        
-        evidenceIDs.append("s_247")
-        for evidenceID in evidenceIDs {
-            evidence.append(["id": (evidenceID), "choice_id": "present", "initial": true])
-        }
-        //var evidence = [["id": "s_47", "choice_id": "present", "initial": true]]
-        let json: [String:Any] = ["sex": sex,
-                                  "age": self.age,
-                                  "evidence": self.evidence,
-                                  //"extras": extras
+        let json: [String:Any] = ["sex": String(sex),
+                                  "age": age,
+                                  "evidence": evidence,
+                                  "extras": extras
         ]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
@@ -81,34 +79,45 @@ class DiagnosisQuestions: UIViewController {
         getQuestions(request: request) {data in
             do {
                 let responseJSON = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                print(responseJSON)
-                
-                //let question = try JSONDecoder().decode(Diagnosis.Question.self, from: data!)
-                let diag = try JSONDecoder().decode(Diagnosis.self, from: data!)
-                //print(ques.question.text)
-                //print(ques.question.items.first!.id)
-                //print(ques.question.items.first!)
-                
-                //var symptom: Symptoms
-                //print(ques.question.items.first!.name)
+                self.diag = try JSONDecoder().decode(Diagnosis.self, from: data!)
+
                 let symptom = Symptoms()
-                symptom.name = diag.question.items.first!.name
-                symptom.id = diag.question.items.first!.id
-                print(symptom.name)
-                print(symptom.id)
+                symptom.name = self.diag.question.items.first!.name
+                symptom.id = self.diag.question.items.first!.id
+                self.question = self.diag.question.text
                 self.suggestedSymptomsArray.append(symptom)
-                self.updateTableViewWithSymptoms(symptoms: self.suggestedSymptomsArray)
-                //print(ques.question.items.first!.name)
-                //print(ques.question.items.name)
+                self.updateQuestion()
                 
             } catch let error as NSError {
                 print(error)
             }
         }
-        
-        
     }
     
+    // Updates the state of the Controller once the asynchronous API call has been completed
+    func updateQuestion() {
+        DispatchQueue.main.async {
+            if self.questionCounter == 1 {
+                self.Q1Lbl.font = UIFont(name:"Avenir", size:18)
+                self.Q1Lbl.text = "\n\(self.question)"
+                self.Q1Lbl.numberOfLines = 0;
+                self.Q1Lbl.lineBreakMode = .byWordWrapping
+            } else if self.questionCounter == 2 {
+                self.Q2Lbl.font = UIFont(name:"Avenir", size:18)
+                self.Q2Lbl.text = self.question
+                self.Q2Lbl.numberOfLines = 0;
+                self.Q2Lbl.lineBreakMode = .byWordWrapping
+            } else if self.questionCounter == 3 {
+                self.Q3Lbl.font = UIFont(name:"Avenir", size:18)
+                self.Q3Lbl.text = self.question
+                self.Q3Lbl.numberOfLines = 0;
+                self.Q3Lbl.lineBreakMode = .byWordWrapping
+            }
+        }
+    }
+    
+    // Send the request to the URL, uses a completionHandler to ensure we obtain
+    // data, and handle cases where the URL does not respond
     func getQuestions (request: URLRequest, completion:@escaping (Data?) -> Void) {
         
         _ = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -124,30 +133,23 @@ class DiagnosisQuestions: UIViewController {
             }.resume()
     }
     
-    func updateTableViewWithSymptoms(symptoms: [Symptoms]) {
-        
-        DispatchQueue.main.async {
-            
-            //self.additionalSymptomsTableView.reloadData()
-            //self.activityIndicator.stopAnimating()
-            
-        }
-    }
-    
-    
+    // Updates counters and labels to be visible in the correct order.
+    // Also updates evidence array for the next GET request
     @IBAction func questionChecker(sender: UIButton) {
-        
         let titleName = sender.currentTitle!
         
         if titleName == "Yes" {
-            
             if Q2Stack.isHidden && Q2Lbl.isHidden == true {
-                
+                self.evidence.append(["id": (suggestedSymptomsArray.last!.id), "choice_id": "present", "initial": false])
+                questionCounter = 2
+                callingApi()
                 Q2Lbl.isHidden = false
                 Q2Stack.isHidden = false
                 
             } else if Q3Lbl.isHidden && Q3Stack.isHidden == true {
-                
+                self.evidence.append(["id": (suggestedSymptomsArray.last!.id), "choice_id": "present", "initial": false])
+                questionCounter = 3
+                callingApi()
                 Q3Lbl.isHidden = false
                 Q3Stack.isHidden = false
                 
@@ -157,12 +159,16 @@ class DiagnosisQuestions: UIViewController {
         } else if titleName == "No" {
             
             if Q2Stack.isHidden && Q2Lbl.isHidden == true {
-                
+                self.evidence.append(["id": (suggestedSymptomsArray.last!.id), "choice_id": "absent", "initial": false])
+                questionCounter = 2
+                callingApi()
                 Q2Lbl.isHidden = false
                 Q2Stack.isHidden = false
                 
             } else if Q3Lbl.isHidden && Q3Stack.isHidden == true {
-                
+                self.evidence.append(["id": (suggestedSymptomsArray.last!.id), "choice_id": "absent", "initial": false])
+                questionCounter = 3
+                callingApi()
                 Q3Lbl.isHidden = false
                 Q3Stack.isHidden = false
                 
@@ -172,19 +178,31 @@ class DiagnosisQuestions: UIViewController {
         } else if titleName == "Don't Know" {
             
             if Q2Stack.isHidden && Q2Lbl.isHidden == true {
-                
+                self.evidence.append(["id": (suggestedSymptomsArray.last!.id), "choice_id": "unknown", "initial": false])
+                questionCounter = 2
+                callingApi()
                 Q2Lbl.isHidden = false
                 Q2Stack.isHidden = false
                 
             } else if Q3Lbl.isHidden && Q3Stack.isHidden == true {
-                
+                self.evidence.append(["id": (suggestedSymptomsArray.last!.id), "choice_id": "unknown", "initial": false])
+                questionCounter = 3
+                callingApi()
                 Q3Lbl.isHidden = false
                 Q3Stack.isHidden = false
-                
             }
         }
     }
     
+    // Passes through necessary variables to next Controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? PotentialDiagnosis {
+            destination.finalDiagnosis = diag
+            destination.radius = radius
+        }
+        
+    }
     
     @IBAction func movingControllers(sender: UIButton) {
         

@@ -12,7 +12,6 @@ class DiagnosisCell: UITableViewCell {
 
     @IBOutlet weak var suggestedDiagnosisLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -20,12 +19,15 @@ class DiagnosisCell: UITableViewCell {
     
     }
     
-    
-    func updateUI(diagnosis: Diagnosis) {
-        
-        suggestedDiagnosisLabel.text = diagnosis.question.items.first!.name
-        
+    // Format text appropriately, in case it takes up multiple lines
+    func updateUI(condition: Diagnosis.Condition) {
+        suggestedDiagnosisLabel.font = UIFont(name:"Avenir", size:18)
+        // Rounding to 3dp here, to avoid extremely long decimals
+        let probabilityDouble = Double(condition.probability! as NSNumber)
+        let probabilityRounded = Double(round(1000*probabilityDouble)/1000)
+        suggestedDiagnosisLabel.text = "Condition: \(condition.name!) \nProbability: \(probabilityRounded)"
+        suggestedDiagnosisLabel.numberOfLines = 0;
+        suggestedDiagnosisLabel.lineBreakMode = .byWordWrapping
     }
-
 
 }

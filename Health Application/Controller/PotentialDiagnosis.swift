@@ -13,17 +13,16 @@ class PotentialDiagnosis: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var diagnosisTableView: UITableView!
     
-    var suggestedDiagnosisArray = [Diagnosis]()
+    var finalDiagnosis : Diagnosis!
+    var radius = 0
+    var selectedRow: Diagnosis.Condition!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let diagnosis1 = Diagnosis()
-        let diagnosis2 = Diagnosis()
-        let diagnosis3 = Diagnosis()
-        suggestedDiagnosisArray.append(diagnosis1)
-        suggestedDiagnosisArray.append(diagnosis2)
-        suggestedDiagnosisArray.append(diagnosis3)
+        //diagnosisTableView.estimatedRowHeight = 300
+        //diagnosisTableView.rowHeight = UITableViewAutomaticDimension
         
         diagnosisTableView.delegate = self
         diagnosisTableView.dataSource = self
@@ -31,53 +30,46 @@ class PotentialDiagnosis: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    
+    // Updates the UITableView with necessary potential conditions
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if let cell = diagnosisTableView.dequeueReusableCell(withIdentifier: "Diagnosis", for: indexPath) as? DiagnosisCell {
+            let suggestedDiagnosisCondition = self.finalDiagnosis.conditions[indexPath.row]
+            cell.updateUI(condition: suggestedDiagnosisCondition)
             
-            let suggestedDiagnosis = self.suggestedDiagnosisArray[indexPath.row]
-            
-            cell.updateUI(diagnosis: suggestedDiagnosis)
-                        
             return cell
             
         } else {
             
             return UITableViewCell()
         }
-    
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return suggestedDiagnosisArray.count
+        return finalDiagnosis.conditions.count
+    }
+    
+    // Passes through necessary variables to next Controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if let destination = segue.destination as? MapOfHospitals {
+            destination.radius = radius
+            destination.potentialProblem = selectedRow.name
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectedRow = suggestedDiagnosisArray[indexPath.row]
-        
+        selectedRow = self.finalDiagnosis.conditions[indexPath.row]
         performSegue(withIdentifier: "5-6", sender: selectedRow)
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let destination = segue.destination as? MapOfHospitals {
-            
-            if let diagnosis = sender as? [Diagnosis] {
-                
-                destination.potentialProblem = diagnosis
-                
-                
-            }
-        }
-        
-        
+    // Ensures the UITableViewCell always displays all text
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
+    
 
 
 }

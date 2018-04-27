@@ -30,13 +30,15 @@ struct HealthPlace {
 
 class MapOfHospitals: UIViewController {
     
-    var potentialProblem = [Diagnosis]()
+    var potentialProblem : String!
+    var radius: Int!
     
     @IBOutlet weak var viewToDisplayMap: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(potentialProblem)
+        print(radius)
         //Original
         /*
          let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
@@ -50,7 +52,8 @@ class MapOfHospitals: UIViewController {
          marker.snippet = "Australia"
          marker.map = mapView*/
         
-        let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC-IopjQwmhTpgJCV6aDYHhYiV6RG0H5G8&&location=53.8020860,-1.5644430&radius=1000&types=dentist")
+        
+        let url = URL(string : "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC-IopjQwmhTpgJCV6aDYHhYiV6RG0H5G8&&location=53.8020860,-1.5644430&radius=\(radius)&types=dentist")
         
         navigationItem.title = "Health App Map"
         

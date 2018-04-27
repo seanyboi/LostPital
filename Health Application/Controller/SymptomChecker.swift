@@ -47,12 +47,6 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         symptomCheckerTable.delegate = self
         symptomCheckerTable.dataSource = self
         
-        for x in symptomArray {
-            
-            print(x.id)
-            
-        }
-        
     }
     
     //Places array data into tableview.
@@ -124,7 +118,7 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
+    // Passes through necessary variables to next Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destination = segue.destination as? DiagnosisQuestions {
@@ -132,7 +126,7 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
             destination.selectedSymptoms = sender as! [Symptoms]
             destination.age = Int(yearOfBirthTextField.text!)!
             destination.radius = Int(radiusTextField.text!)!
-            destination.sex = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)!
+            destination.sex = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)!.lowercased()
             
             
         }
