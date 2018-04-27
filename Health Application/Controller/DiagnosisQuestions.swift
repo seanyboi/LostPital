@@ -72,7 +72,6 @@ class DiagnosisQuestions: UIViewController {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("f93580b1", forHTTPHeaderField: "App-Id")
         request.setValue("e2d0f821e118e1bd3fa21290d5bc7e22", forHTTPHeaderField: "App-Key")
-        //request.setValue("true", forHTTPHeaderField: "Dev-Mode")
         
         request.httpBody = jsonData
         

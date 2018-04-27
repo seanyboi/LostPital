@@ -29,10 +29,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symptom Checker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtF-1Z-aa9">
-                                        <rect key="frame" x="81.5" y="21" width="212" height="34.5"/>
+                                        <rect key="frame" x="82" y="21" width="212" height="34.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="45"/>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ5-Nr-kxA">
                                         <rect key="frame" x="337" y="25" width="30" height="30"/>
@@ -44,6 +47,9 @@
                                         <state key="normal" title="+">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="35"/>
+                                        </variation>
                                         <connections>
                                             <action selector="addingSymptomButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sqK-LY-95e"/>
                                         </connections>
@@ -113,6 +119,9 @@
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                                </variation>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c3S-F7-Sbt">
                                                 <rect key="frame" x="177.5" y="0.0" width="177.5" height="29"/>
@@ -132,6 +141,9 @@
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                                </variation>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your age..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ehJ-C9-nZq">
                                                 <rect key="frame" x="177.5" y="0.0" width="177.5" height="30"/>
@@ -149,6 +161,9 @@
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                                </variation>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter radius for search..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ijK-o2-uc1">
                                                 <rect key="frame" x="177.5" y="0.0" width="177.5" height="30"/>
@@ -197,6 +212,7 @@
                             <constraint firstItem="AbK-KK-aPa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OFM-Fc-YaB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qxQ-dM-kp6" secondAttribute="bottom" constant="10" id="PYj-8X-QPK">
                                 <variation key="heightClass=compact-widthClass=compact" constant="5"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
                             </constraint>
                             <constraint firstItem="9Aq-fk-DuU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vin-q5-Juo"/>
                             <constraint firstItem="SCa-Ha-fvI" firstAttribute="top" secondItem="AbK-KK-aPa" secondAttribute="bottom" constant="20" id="aau-c6-4dO">
@@ -309,7 +325,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-lw-e0Q" customClass="Border" customModule="Health_Application" customModuleProvider="target">
-                                <rect key="frame" x="10" y="595" width="355" height="52"/>
+                                <rect key="frame" x="10" y="599" width="355" height="48"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="26"/>
                                 <state key="normal" title="PROCEED">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -330,9 +346,7 @@
                             <constraint firstItem="Lot-zE-c3R" firstAttribute="bottom" secondItem="vd1-lw-e0Q" secondAttribute="bottom" constant="20" id="HWH-nd-O5n">
                                 <variation key="heightClass=compact-widthClass=compact" constant="2"/>
                                 <variation key="heightClass=compact-widthClass=regular" constant="20"/>
-                            </constraint>
-                            <constraint firstItem="vd1-lw-e0Q" firstAttribute="top" secondItem="8u3-yO-qoB" secondAttribute="bottom" constant="20" id="Zj1-CH-O5z">
-                                <variation key="heightClass=compact-widthClass=compact" constant="2"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                             </constraint>
                             <constraint firstItem="Pnn-Jk-HnQ" firstAttribute="leading" secondItem="Lot-zE-c3R" secondAttribute="leading" id="ft5-hT-l74"/>
                             <constraint firstItem="8u3-yO-qoB" firstAttribute="top" secondItem="Pnn-Jk-HnQ" secondAttribute="bottom" id="m5I-q5-NSu"/>
@@ -371,9 +385,12 @@
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                </variation>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0i8-r4-I0g">
-                                                <rect key="frame" x="10" y="93.5" width="355" height="36"/>
+                                                <rect key="frame" x="10" y="93" width="355" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwL-fz-z9t" customClass="Border" customModule="Health_Application" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="111.5" height="36"/>
@@ -381,6 +398,9 @@
                                                         <state key="normal" title="Yes">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="questionCheckerWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="E6l-ac-tt2"/>
                                                         </connections>
@@ -391,6 +411,9 @@
                                                         <state key="normal" title="No">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="questionCheckerWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="1gv-3G-vyH"/>
                                                         </connections>
@@ -401,6 +424,9 @@
                                                         <state key="normal" title="Don't Know">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="questionCheckerWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="gFs-2c-aTR"/>
                                                         </connections>
@@ -428,6 +454,9 @@
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                </variation>
                                             </label>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="A3t-Ct-2ar">
                                                 <rect key="frame" x="10" y="92.5" width="355" height="36"/>
@@ -438,6 +467,9 @@
                                                         <state key="normal" title="Yes">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="questionCheckerWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="k9w-fv-9Kt"/>
                                                         </connections>
@@ -448,6 +480,9 @@
                                                         <state key="normal" title="No">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="questionCheckerWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="LqH-C6-hKI"/>
                                                         </connections>
@@ -458,6 +493,9 @@
                                                         <state key="normal" title="Don't Know">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="questionCheckerWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="jv2-f9-o3Y"/>
                                                         </connections>
@@ -486,9 +524,12 @@
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                </variation>
                                             </label>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vb0-5H-Gev">
-                                                <rect key="frame" x="10" y="94" width="355" height="36"/>
+                                                <rect key="frame" x="10" y="93.5" width="355" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf7-Cz-8u4" customClass="Border" customModule="Health_Application" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="111.5" height="36"/>
@@ -496,6 +537,9 @@
                                                         <state key="normal" title="Yes">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="movingControllersWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="7p6-z5-f1c"/>
                                                         </connections>
@@ -506,6 +550,9 @@
                                                         <state key="normal" title="No">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="movingControllersWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="ZhE-bE-R25"/>
                                                         </connections>
@@ -516,6 +563,9 @@
                                                         <state key="normal" title="Don't Know">
                                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="movingControllersWithSender:" destination="3vM-bS-YND" eventType="touchUpInside" id="hO1-av-cQR"/>
                                                         </connections>
@@ -592,6 +642,9 @@
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="26"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

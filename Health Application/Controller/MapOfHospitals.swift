@@ -23,7 +23,6 @@ struct HealthPlace {
     let longitude: CLLocationDegrees
     let icon: String
     let rating : Double
-    //    let type: String
 }
 
 class MapOfHospitals: UIViewController, GMSMapViewDelegate {
@@ -45,8 +44,6 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.809472,-1.554973&radius=\(radius)&types=\(type)&key=\(key)"
         
         let url = URL(string : urlString)
-        
-        //navigationItem.title = "Health App Map"
         
         let camera = GMSCameraPosition.camera(withLatitude: 53.809472, longitude: -1.554973, zoom: 15)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -112,21 +109,11 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
             self.focusMapToShowAllMarkers(mymapView: mymapView, HealthPlaces: HealthPlaces2)
         }
         
-        //self.focusMapToShowAllMarkers(mymapView: mymapView, HealthPlaces: HealthPlaces2)
-        
     }
     
-    func Json(myurl: URL, mymapView2 : GMSMapView) /*-> [HealthPlace] */{
+    func Json(myurl: URL, mymapView2 : GMSMapView){
         
-        //var HealthPlaces:[HealthPlace] = []
-        
-        /*let task = URLSession.shared.dataTask(with: myurl){ (data, response, error) in
-         if error != nil { print ("Error") }
-         else {
-         do
-         {
-         if let data = data,*/
-        
+    
         getHealthPlaces(request: myurl) {data in
             do {
                 
@@ -137,25 +124,17 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
                     
                     for i in 0..<results.count {
                         
-                        if let geometry = results[i] as? NSDictionary{ //print(geometry)
+                        if let geometry = results[i] as? NSDictionary{
                             place = geometry.value(forKey: "name") as! String
                             icon = geometry.value(forKey: "icon") as! String
                             
-                            if let rating = geometry["rating"] as? Double{ //print(rating)
+                            if let rating = geometry["rating"] as? Double{
                                 rating2 = rating
                             }
                             
-                            /*if let types = geometry["types"] as? NSArray{
-                             for j in 0..<types.count {
-                             if let type = types[j] as? NSMutableString{ //print(type)
-                             type2 = type as String
-                             }
-                             }
-                             }*/
-                            
-                            if let location = geometry["geometry"] as? NSDictionary{ //print(location)
+                            if let location = geometry["geometry"] as? NSDictionary{
                                 
-                                if let coords = location["location"] as? NSDictionary{ //print(latlon)
+                                if let coords = location["location"] as? NSDictionary{
                                     
                                     if let lat = coords["lat"] as? Double{ print(lat)
                                         lat2 = lat
@@ -168,12 +147,10 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
                                                                           latitude: (lat2) as Double,
                                                                           longitude: (lon2)as Double,
                                                                           icon: (icon as NSString) as String,
-                                                                          rating: (rating2) as Double
-                                        /*type: (type2) as String*/))
+                                                                          rating: (rating2) as Double))
                                 }
                             }
                         }
-                        print(HealthPlaces2[i])
                     }
                     
                     self.updateMap(mymapView: mymapView2)
@@ -184,8 +161,7 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
             { print(error)}
             
         }
-        //task.resume()
-        //return HealthPlaces
+
     }
     
     func focusMapToShowAllMarkers(mymapView: GMSMapView, HealthPlaces : [HealthPlace]) {
@@ -221,31 +197,5 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
         return newImage
     }
     
-    func OriginalMap(){
-        /*
-         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-         viewToDisplayMap = mapView
-         
-         // Creates a marker in the center of the map.
-         let marker = GMSMarker()
-         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-         marker.title = "Sydney"
-         marker.snippet = "Australia"
-         marker.map = mapView*/
-    }
-    
-    func manualtests(){
-        /*HealthPlaces.append(HealthPlace.init(name: "place 1", latitude: 53.801224, longitude: -1.5569374, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png
-         
-         ", rating: 5.5))
-         
-         HealthPlaces.append(HealthPlace.init(name: "place 2", latitude: 53.80323610000001, longitude: -1.5557941, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png
-         
-         ", rating: 7.5))
-         
-         HealthPlaces.append(HealthPlace.init(name: "place 3", latitude: 53.8070725, longitude: -1.5573777, icon: "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png", rating: 7.5))
-         */
-    }
     
 }

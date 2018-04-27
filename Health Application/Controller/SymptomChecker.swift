@@ -116,10 +116,19 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.present(errorAlert, animated: true, completion: nil)
             
+        }  else if (Int(radiusTextField.text!)! < 1000 && Int(yearOfBirthTextField.text!)! > 130) || Int(radiusTextField.text!)! < 1000 || Int(yearOfBirthTextField.text!)! > 130 {
+            
+            let errorAlert = UIAlertController(title: "Error", message: "Please ensure your Radius is greater than 1000m and your Age is less than 130", preferredStyle: .alert)
+            
+            let errorAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            errorAlert.addAction(errorAction)
+            
+            self.present(errorAlert, animated: true, completion: nil)
+            
         } else {
             
             performSegue(withIdentifier: "1-4", sender: symptomArray)
-
         }
         
         

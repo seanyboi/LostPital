@@ -21,8 +21,6 @@ class PotentialDiagnosis: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //diagnosisTableView.estimatedRowHeight = 300
-        //diagnosisTableView.rowHeight = UITableViewAutomaticDimension
         
         diagnosisTableView.delegate = self
         diagnosisTableView.dataSource = self
