@@ -97,17 +97,14 @@ class DiagnosisQuestions: UIViewController {
     func updateQuestion() {
         DispatchQueue.main.async {
             if self.questionCounter == 1 {
-                self.Q1Lbl.font = UIFont(name:"Avenir", size:18)
                 self.Q1Lbl.text = "\n\(self.question)"
                 self.Q1Lbl.numberOfLines = 0;
                 self.Q1Lbl.lineBreakMode = .byWordWrapping
             } else if self.questionCounter == 2 {
-                self.Q2Lbl.font = UIFont(name:"Avenir", size:18)
                 self.Q2Lbl.text = self.question
                 self.Q2Lbl.numberOfLines = 0;
                 self.Q2Lbl.lineBreakMode = .byWordWrapping
             } else if self.questionCounter == 3 {
-                self.Q3Lbl.font = UIFont(name:"Avenir", size:18)
                 self.Q3Lbl.text = self.question
                 self.Q3Lbl.numberOfLines = 0;
                 self.Q3Lbl.lineBreakMode = .byWordWrapping

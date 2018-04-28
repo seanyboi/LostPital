@@ -25,28 +25,39 @@ struct HealthPlace {
     let rating : Double
 }
 
-class MapOfHospitals: UIViewController, GMSMapViewDelegate {
+class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+    
+    var location = CLLocationManager()
+    var mapView: GMSMapView!
     
     var radius = 0
     var type = ""
     var key = "AIzaSyDV69zY7VYkfaaxRwyvP3YFwvWJ6gC8DM8"
     var potentialProblem = ""
     
-
-    
     @IBOutlet weak var viewToDisplayMap: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        location.desiredAccuracy = kCLLocationAccuracyBest
+        location.requestAlwaysAuthorization()
+        location.startUpdatingLocation()
+        location.delegate = self
+        
+        location.startUpdatingLocation()
+        
         DeterminePlaceType()
         
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=53.809472,-1.554973&radius=\(radius)&types=\(type)&key=\(key)"
+        let latitude = (location.location?.coordinate.latitude)!
+        let longitude = (location.location?.coordinate.longitude)!
+        
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&types=\(type)&key=\(key)"
         
         let url = URL(string : urlString)
         
-        let camera = GMSCameraPosition.camera(withLatitude: 53.809472, longitude: -1.554973, zoom: 15)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        let camera = GMSCameraPosition.camera(withLatitude: (location.location?.coordinate.latitude)!, longitude: (location.location?.coordinate.longitude)!, zoom: 15)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         mapView.isMyLocationEnabled = true;
         mapView.settings.compassButton = true;
@@ -57,7 +68,23 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
         
         view = mapView
         
-
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let currentLocation = locations.last!
+        
+        let latitude = currentLocation.coordinate.latitude
+        let longitude = currentLocation.coordinate.longitude
+        
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 15)
+        
+        mapView.camera = camera
+        mapView.animate(to: camera)
+        
+        location.stopUpdatingLocation()
+        
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -94,9 +121,7 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     func updateMap(mymapView : GMSMapView)
     {
         DispatchQueue.main.async() {
-            
-            print("Async Task ended!")
-            
+                        
             for state in HealthPlaces2 {
                 let state_marker = GMSMarker()
                 state_marker.position = CLLocationCoordinate2D(latitude: state.latitude, longitude: state.longitude)
@@ -136,10 +161,10 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
                                 
                                 if let coords = location["location"] as? NSDictionary{
                                     
-                                    if let lat = coords["lat"] as? Double{ print(lat)
+                                    if let lat = coords["lat"] as? Double{
                                         lat2 = lat
                                     }
-                                    if let lng = coords["lng"] as? Double{ print(lng)
+                                    if let lng = coords["lng"] as? Double{
                                         lon2 = lng
                                     }
                                     
@@ -185,7 +210,6 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate {
     
     func downloadasync(url: URL, state_marker : GMSMarker){
         getDataFromUrl(url: url) { data, response, error in guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
             DispatchQueue.main.async() { state_marker.icon = self.imageWithImage(image: UIImage(data: data)!, scaledToSize: CGSize(width: 33.0, height: 33.0)) } }
     }
     
