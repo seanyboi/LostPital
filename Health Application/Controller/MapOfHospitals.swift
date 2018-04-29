@@ -52,6 +52,9 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         let latitude = (location.location?.coordinate.latitude)!
         let longitude = (location.location?.coordinate.longitude)!
         
+        print(latitude)
+        print(longitude)
+        
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&types=\(type)&key=\(key)"
         
         let url = URL(string : urlString)
@@ -178,7 +181,10 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                         }
                     }
                     
-                    self.updateMap(mymapView: mymapView2)
+                    
+                    DispatchQueue.main.async() {
+                        self.updateMap(mymapView: mymapView2)
+                    }
                     
                 }
             }
