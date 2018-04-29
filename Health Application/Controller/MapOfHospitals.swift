@@ -15,8 +15,9 @@ var lon2 : Double = 0.0
 var icon : String = ""
 var rating2 : Double = 0.0
 
-var HealthPlaces2:[HealthPlace] = []
+var HealthPlaces2 : [HealthPlace] = []
 
+//Struct for the Health places returned by Google Map API.
 struct HealthPlace {
     let name: String
     let latitude: CLLocationDegrees
@@ -40,24 +41,25 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Determines users location.
+        
         location.desiredAccuracy = kCLLocationAccuracyBest
         location.requestAlwaysAuthorization()
         location.startUpdatingLocation()
         location.delegate = self
         
-        location.startUpdatingLocation()
-        
         DeterminePlaceType()
+        
+        //Uses users location to and previous inputted variables to create API url.
         
         let latitude = (location.location?.coordinate.latitude)!
         let longitude = (location.location?.coordinate.longitude)!
         
-        print(latitude)
-        print(longitude)
-        
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&types=\(type)&key=\(key)"
         
         let url = URL(string : urlString)
+        
+        //Updates map with current position and places location button so users can find their location
         
         let camera = GMSCameraPosition.camera(withLatitude: (location.location?.coordinate.latitude)!, longitude: (location.location?.coordinate.longitude)!, zoom: 15)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -73,6 +75,8 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         
         
     }
+    
+    //Updates location when the users uses the application
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -111,6 +115,8 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         }
     }
     
+    // Send the request to the URL, uses a completionHandler to ensure we obtain
+    // data, and handle cases where the URL does not respond
     func getHealthPlaces (request: URL, completion:@escaping (Data?) -> Void) {
         _ = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
@@ -121,6 +127,7 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             }.resume()
     }
     
+    //Updates the map asynchronously with the markers associated with the health facilities.
     func updateMap(mymapView : GMSMapView)
     {
         DispatchQueue.main.async() {
@@ -139,6 +146,8 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         
     }
     
+    // Function for setting up GET request for diagnosis from Google Maps
+
     func Json(myurl: URL, mymapView2 : GMSMapView){
         
     
@@ -181,11 +190,8 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                         }
                     }
                     
-                    
-                    DispatchQueue.main.async() {
                         self.updateMap(mymapView: mymapView2)
-                    }
-                    
+
                 }
             }
             catch let error as NSError
@@ -195,6 +201,7 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
 
     }
     
+    //Focuses google maps on area where most markers are placed.
     func focusMapToShowAllMarkers(mymapView: GMSMapView, HealthPlaces : [HealthPlace]) {
         
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: HealthPlaces.first!.latitude,longitude: HealthPlaces.first!.longitude)
@@ -210,15 +217,18 @@ class MapOfHospitals: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         
     }
     
+    //Recieves data from URL.
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in completion(data, response, error) }.resume()
     }
     
+    //Downloads the images associated with a particular health place from the JSON data recieved during API call.
     func downloadasync(url: URL, state_marker : GMSMarker){
         getDataFromUrl(url: url) { data, response, error in guard let data = data, error == nil else { return }
             DispatchQueue.main.async() { state_marker.icon = self.imageWithImage(image: UIImage(data: data)!, scaledToSize: CGSize(width: 33.0, height: 33.0)) } }
     }
     
+    //Converts downloaded image into a marker
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))

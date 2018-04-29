@@ -28,6 +28,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Creates activity indicator within middle of screen. Hidden when API returns data.
         
         activityIndicator.center = CGPoint(x: searchingSymptomsTableView.bounds.size.width/2, y: searchingSymptomsTableView.bounds.size.height/2)
         activityIndicator.activityIndicatorViewStyle = .whiteLarge
@@ -114,7 +115,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     }
     
     
-    
+    //Determines number of rows whether a user is using the search bar or not
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchingUnderWay {
@@ -129,6 +130,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     }
     
     
+    //Determines what is displayed within the TableView and allows checkmarks to be displayed next to selected symptoms
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = searchingSymptomsTableView.dequeueReusableCell(withIdentifier: "ExtraSymptoms", for: indexPath) as? ExtraSymptomCell {
@@ -169,7 +171,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
     }
     
     
-    
+    //Determines what occurs when a row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedRow: Symptoms!
@@ -178,11 +180,13 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
         let cell : UITableViewCell = tableView.cellForRow(at: indexPath)!
         
+        //If user is using search bar
         if searchingUnderWay {
             
             selectedRow = filteredArray[indexPath.row]
             symptomName = filteredArray[indexPath.row].name as String
             
+            //If symptom selected is already in array remove it from selected array
             if clicked.contains(symptomName) {
                 
                 cell.accessoryType = .none
@@ -195,6 +199,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
                     selectedSymptoms.remove(at: element)
                 }
 
+            //Else append to array and set checkmark
             } else {
                 
                 clicked.append(symptomName)
@@ -208,12 +213,13 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
             }
             
             
-        
+        //If User isnt using search bar
         } else {
             
             selectedRow = searchingArray[indexPath.row]
             symptomName = searchingArray[indexPath.row].name as String
 
+            //If symptom selected is already in array remove it from selected array
             if clicked.contains(symptomName) {
                 
                 cell.accessoryType = .none
@@ -226,6 +232,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
                     selectedSymptoms.remove(at: element)
                 }
 
+            //Else append to array and set checkmark
             } else {
                 
                 clicked.append(symptomName)
@@ -242,6 +249,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+    //Sets what should be seen when User is using search bar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchBar.text == nil || searchBar.text == "" {
@@ -263,6 +271,7 @@ class SearchingSymptoms: UIViewController , UITableViewDelegate, UITableViewData
         
     }
     
+    //Detects if user has selected enough symptoms to proceed.
 
     @IBAction func proceedBtn(_ sender: Any) {
         

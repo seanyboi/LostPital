@@ -8,11 +8,8 @@
 
 import Foundation
 
+//Diagnosis class used to reprsent diagnosis objects
 class Diagnosis : Decodable {
-    
-    /*init() {
-        //self.question = question
-    }*/
     
     var conditions = [Condition]()
     

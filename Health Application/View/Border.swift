@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Creates a customised button with border
 class Border: UIButton {
 
     override func awakeFromNib() {

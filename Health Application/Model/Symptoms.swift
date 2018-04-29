@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Symptoms class
 class Symptoms : Decodable {
     
     var id: String!

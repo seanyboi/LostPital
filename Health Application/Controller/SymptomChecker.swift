@@ -10,6 +10,8 @@ import UIKit
 
 class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    //Initialisation of Views
+    
     @IBOutlet weak var additionalInfoStack: UIStackView!
     
     @IBOutlet weak var symptomCheckerTable: UITableView!
@@ -29,6 +31,8 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Determines whether a user has selected their symptoms yet. Views hidden until done so.
         
         if completedSearch == "Completed" {
             
@@ -95,6 +99,8 @@ class SymptomChecker: UIViewController, UITableViewDelegate, UITableViewDataSour
         return Int(stringBeingChecked) != nil
     }
 
+    //Logic check before searching, checks whether user inputs are valid
+    
     @IBAction func searchButton(_ sender: Any) {
         
         if (yearOfBirthTextField.text == "" && radiusTextField.text == "") || yearOfBirthTextField.text == "" || radiusTextField.text == "" {
